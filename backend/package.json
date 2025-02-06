@@ -1,0 +1,25 @@
+{
+  "name": "formlab",
+  "version": "1.0.0",
+  "description": "A place to create and share forms.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/krishnatherokar/formlab.git"
+  },
+  "author": "Krishna Therokar",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/krishnatherokar/formlab/issues"
+  },
+  "homepage": "https://github.com/krishnatherokar/formlab#readme",
+  "dependencies": {
+    "express": "^4.21.2"
+  },
+  "devDependencies": {
+    "dotenv": "^16.4.7"
+  }
+}
