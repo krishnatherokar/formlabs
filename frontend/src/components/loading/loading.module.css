@@ -1,0 +1,22 @@
+@import '../../assets/styles/variables.module.css';
+
+.loader {
+    padding: 1px;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(90deg, var(--blue-800), var(--blue-300), var(--blue-800));
+    background-size: 200% 100%;
+    animation: load 1s linear infinite;
+}
+
+@keyframes load {
+    from {
+        background-position: 0% 50%;
+    }
+
+    to {
+        background-position: -200% 50%;
+    }
+}
