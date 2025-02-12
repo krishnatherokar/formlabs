@@ -8,7 +8,7 @@ passport.use(
     {
       clientID: process.env.GOOGLE_CLIENT_ID,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET,
-      callbackURL: "/user/google/verify",
+      callbackURL: "/login/google/verify",
     },
     async (accessToken, refreshToken, profile, setUser) => {
       return setUser(null, profile);

@@ -1,22 +1,23 @@
 const express = require("express");
 const passport = require("passport");
+const logGoogle = require("../controllers/login/logGoogle");
 const googleRouter = express.Router();
 require("../config/googleStrategy");
 
-googleRouter.get("/",
+googleRouter.get(
+  "/",
   passport.authenticate("google", {
     scope: ["profile", "email"],
   })
 );
 
-googleRouter.get("/verify",
+googleRouter.get(
+  "/verify",
   passport.authenticate("google", {
     session: false,
-    failureRedirect: "/user/login",
+    failureRedirect: process.env.G_FAIL_REDIRECT,
   }),
-  (req, res) => {
-    res.send(req.user);
-  }
+  logGoogle
 );
 
 module.exports = googleRouter;
