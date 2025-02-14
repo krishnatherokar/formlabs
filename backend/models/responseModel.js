@@ -5,6 +5,10 @@ const responseSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
+  formId: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "form",
+  },
   answers: [String],
 });
 
