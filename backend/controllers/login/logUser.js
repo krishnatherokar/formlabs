@@ -1,20 +1,20 @@
-const userSchema = require("../../models/userSchema");
+const userModel = require("../../models/userModel");
 const saveToken = require("../../utils/saveToken");
 
-const logUser = async (req, res) => {
+const logUser = async (req, res, next) => {
   try {
-    const {email, password} = req.body;
-    const user = await userSchema.findOne({email});
+    const { email, password } = req.body;
+    const user = await userModel.findOne({ email });
 
-    if (!user) throw new Error("Invalid credentials");
+    if (!user) throw new backendError("Invalid credentials", 401);
 
     // Todo: compare password
 
-    saveToken(user._id, res);
+    await saveToken(user._id, res);
 
     res.json("Logged in");
   } catch (error) {
-    res.status(400).json(error.message);
+    next(error);
   }
 };
 

@@ -1,4 +1,4 @@
-const editProfile = async (req, res) => {
+const editProfile = async (req, res, next) => {
   try {
     const user = req.user;
     const allowedFields = ["name"];
@@ -10,7 +10,7 @@ const editProfile = async (req, res) => {
     await user.save();
     res.json(user);
   } catch (error) {
-    res.status(400).json(error.message);
+    next(error);
   }
 };
 
