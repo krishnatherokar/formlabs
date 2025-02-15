@@ -22,7 +22,7 @@ const submitResponse = async (req, res, next) => {
     await form.save();
     await user.save();
 
-    res.json("Response submitted!");
+    res.json(user);
   } catch (error) {
     next(error);
   }

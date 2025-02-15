@@ -1,21 +1,28 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { MultiChoice, MultiSelect, TextAnswer } from "../questions";
 import styles from "./formbody.module.css";
 import useFetch from "../../hooks/useFetch";
 import useSubmit from "../../hooks/useSubmit";
-import changeLocalAns from "../../utils/changeLocalAns";
-import deleteLocalAns from "../../utils/deleteLocalAns";
+import { changeLocalAns, deleteLocalAns } from "../../utils/handleLocalSync";
+import { UserContext } from "../../context/userContext";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
+  const { setUser } = useContext(UserContext);
   const [answers, setAnswers] = useState(
-    ans.length > 0 ? ans : new Array(data.questions.length)
+    ans ? ans : (localStorage.getItem(id)? JSON.parse(localStorage.getItem(id)): null)
   );
+
   const setAns = (i, stringToAdd) => {
     let newArr = [...answers];
     newArr[i] = stringToAdd;
     setAnswers(newArr);
   };
+  
+  if (!answers) {
+    localStorage.setItem(id, JSON.stringify(new Array(data.questions.length)));
+    setAnswers(JSON.parse(localStorage.getItem(id)));
+  }
 
   const { url, handleSubmit } = useSubmit(`/form/submit/${id}`);
   const {
@@ -32,8 +39,15 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
   );
 
   useEffect(() => {
-    changeLocalAns(id, answers);
+    if (answers) changeLocalAns(id, answers);
   }, [answers]);
+
+  useEffect(() => {
+    if (submitResponse) {
+      deleteLocalAns(id);
+      setUser(submitResponse);
+    }
+  }, [submitResponse]);
 
   const ListOfComponents = {
     textanswer: TextAnswer,
@@ -43,10 +57,7 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
 
   if (submitError) return <div>{submitError}</div>;
   if (url && submitLoading) return <div>Loading...</div>;
-  if (submitResponse) {
-    deleteLocalAns(id);
-    return <p>{JSON.stringify(submitResponse)}</p>;
-  }
+  if (submitResponse) return <div>Response submitted</div>;
 
   return (
     <section>
@@ -61,7 +72,7 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
               key={i}
               index={i}
               details={q}
-              val={answers[i]}
+              val={answers ? answers[i] : null}
               readonly={readonly}
               setAns={setAns}
             />
