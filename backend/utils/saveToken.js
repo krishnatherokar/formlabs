@@ -6,11 +6,13 @@ const saveToken = async (userId, res) => {
     expiresIn: "30d",
   });
 
+  const isProduction = process.env.ENVIRONMENT == "production";
+
   // set the token in a cookie
   res.cookie("token", token, {
     httpOnly: true,
-    sameSite: "None", // allow cross-site requests
-    secure: process.env.ENVIRONMENT == 'production',
+    sameSite: isProduction ? "None" : "Lax", // allow cross-site requests
+    secure: isProduction,
     maxAge: 30 * 24 * 60 * 60 * 1000,
   });
 };

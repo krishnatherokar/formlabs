@@ -12,7 +12,7 @@ const logUser = async (req, res, next) => {
 
     await saveToken(user._id, res);
 
-    res.json("Logged in");
+    res.json(user);
   } catch (error) {
     next(error);
   }
