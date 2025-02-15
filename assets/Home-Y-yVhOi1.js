@@ -1,1 +1,0 @@
-import{j as t,L as o}from"./index-D21TByfg.js";const i="_title_w97iq_5",l={title:i},r="_link_7p9va_5",c={link:r},s=({path:e,content:n})=>t.jsx(o,{className:c.link,to:e,children:n}),m=()=>t.jsxs(t.Fragment,{children:[t.jsx("div",{className:l.title,children:"Home"}),t.jsx(s,{path:"/user",content:"Profile"}),t.jsx(s,{path:"/form/123",content:"Form id: 123"})]});export{m as default};
