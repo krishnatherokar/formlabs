@@ -27,6 +27,8 @@ app.use(
   })
 );
 
+app.set('trust proxy', 1);
+
 // limit the requests
 app.use(require("./config/rateLimit"));
 
