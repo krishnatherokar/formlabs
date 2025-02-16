@@ -1,27 +1,21 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
-import useFetch from "../../hooks/useFetch";
+import axios from "axios";
+
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
-  const [url, setUrl] = useState(null);
-  const {
-    data: logoutRes,
-    loading,
-    error,
-  } = useFetch(url, { withCredentials: true });
-
-  const logOut = () => {
-    setUrl(`${import.meta.env.VITE_APP_API_URL}/login/remove`);
-  };
-
-  useEffect(() => {
-    if (logoutRes) {
+  const logOut = async () => {
+    const response = await axios.delete(
+      `${import.meta.env.VITE_APP_API_URL}/login/remove`,
+      {
+        withCredentials: true,
+      }
+    );
+    if (response) {
       localStorage.clear();
       setUser(null);
     }
-  }, [logoutRes]);
-
-  if (error) return <div>{error}</div>;
+  };
 
   return (
     <>

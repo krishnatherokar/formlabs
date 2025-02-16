@@ -8,6 +8,6 @@ loginRouter.post("/", logUser);
 
 loginRouter.use("/google", googleRouter);
 
-loginRouter.get("/remove", logOut);
+loginRouter.delete("/remove", logOut);
 
 module.exports = loginRouter;
