@@ -4,13 +4,18 @@ import styles from "./formbody.module.css";
 import useFetch from "../../hooks/useFetch";
 import useSubmit from "../../hooks/useSubmit";
 import { changeLocalAns, deleteLocalAns } from "../../utils/handleLocalSync";
-import { UserContext } from "../../context/userContext";
+import { UserContext } from "../../context/UserContext";
+import { useLocation, useNavigate } from "react-router-dom";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
   const { setUser } = useContext(UserContext);
   const [answers, setAnswers] = useState(
-    ans ? ans : (localStorage.getItem(id)? JSON.parse(localStorage.getItem(id)): null)
+    ans
+      ? ans
+      : localStorage.getItem(id)
+      ? JSON.parse(localStorage.getItem(id))
+      : null
   );
 
   const setAns = (i, stringToAdd) => {
@@ -18,11 +23,14 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
     newArr[i] = stringToAdd;
     setAnswers(newArr);
   };
-  
+
   if (!answers) {
     localStorage.setItem(id, JSON.stringify(new Array(data.questions.length)));
     setAnswers(JSON.parse(localStorage.getItem(id)));
   }
+
+  const location = useLocation();
+  const navigate = useNavigate();
 
   const { url, handleSubmit } = useSubmit(`/form/submit/${id}`);
   const {
@@ -55,6 +63,10 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
     multiselect: MultiSelect,
   };
 
+  const redirectToLogin = () => {
+    navigate(`/auth?redirectTo=${location.pathname}`);
+  };
+
   if (submitError) return <div>{submitError}</div>;
   if (url && submitLoading) return <div>Loading...</div>;
   if (submitResponse) return <div>Response submitted</div>;
@@ -79,13 +91,20 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
           );
         })}
         {readonly ? null : (
-          <button
-            className={styles.submitButton}
-            type="submit"
-            disabled={!isLogged}
-          >
-            Submit
-          </button>
+          <>
+            {isLogged ? null : (
+              <button onClick={redirectToLogin} className={styles.submitButton}>
+                Login
+              </button>
+            )}
+            <button
+              className={styles.submitButton}
+              type="submit"
+              disabled={!isLogged}
+            >
+              Submit
+            </button>
+          </>
         )}
       </form>
     </section>
