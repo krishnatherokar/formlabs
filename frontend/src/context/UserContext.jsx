@@ -4,7 +4,13 @@ import { createContext, useEffect, useState } from "react";
 export const UserContext = createContext(null);
 
 export const UserProvider = ({ children }) => {
-  const [user, setUser] = useState(null);
+  const [user, setUser] = useState(
+    // if the user is present in localstorage, use it for faster response until we get the user data from the backend
+    localStorage.getItem("user")
+      ? JSON.parse(localStorage.getItem("user"))
+      : null
+  );
+
   const fetchUser = async () => {
     try {
       const fetchedUser = await axios.get(
@@ -17,6 +23,12 @@ export const UserProvider = ({ children }) => {
     } catch (err) {}
   };
 
+  // whenever the user changes, update the localstorage
+  useEffect(() => {
+    if (user) localStorage.setItem("user", JSON.stringify(user));
+  }, [user]);
+
+  //fetch the user only once at beginning
   useEffect(() => {
     fetchUser();
   }, []);
