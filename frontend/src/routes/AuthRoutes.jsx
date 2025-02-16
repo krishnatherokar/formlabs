@@ -3,9 +3,9 @@ import { lazy, Suspense } from "react";
 import Loading from "../components/loading/Loading";
 const Auth = lazy(() => import("../pages/auth/Auth"));
 
-export const AuthRoutes = (user) => {
+export const AuthRoutes = () => {
   return (
-    <Route path="/auth" element={user ? <Navigate to={"/user"} /> : <Outlet />}>
+    <Route path="/auth" element={<Outlet />}>
       <Route
         index
         element={
