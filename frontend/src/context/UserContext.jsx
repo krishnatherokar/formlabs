@@ -17,6 +17,9 @@ export const UserProvider = ({ children }) => {
         `${import.meta.env.VITE_APP_API_URL}/user`,
         {
           withCredentials: true,
+          headers: {
+            "Cache-Control": "no-cache, no-store, must-revalidate",
+          },
         }
       );
       setUser(fetchedUser.data);

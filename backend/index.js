@@ -22,12 +22,12 @@ app.use(
   cors({
     origin: process.env.CORS_ALLOWED,
     methods: "GET,POST,PUT,DELETE",
-    allowedHeaders: "Content-Type,Authorization",
+    allowedHeaders: "Content-Type,Authorization,Cache-Control",
     credentials: true,
   })
 );
 
-app.set('trust proxy', 1);
+app.set("trust proxy", 1);
 
 // limit the requests
 app.use(require("./config/rateLimit"));
