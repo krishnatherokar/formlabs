@@ -8,12 +8,15 @@ const submitResponse = async (req, res, next) => {
     const user = req.user;
     const form = await formModel.findById(formId);
     const response = await responseModel.create({
-      userId: user._id,
+      title: form.title,
+      description: form.description,
+      userName: user.name,
       formId: form._id,
       answers,
     });
 
     form.responses.push(response._id);
+    user.resArr.push(response._id);
     user.responses.push({
       formId: form._id,
       responseId: response._id,

@@ -1,10 +1,9 @@
 const mongoose = require("mongoose");
 
 const responseSchema = mongoose.Schema({
-  userId: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref: "user",
-  },
+  title: String,
+  description: String,
+  userName: String,
   formId: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "form",

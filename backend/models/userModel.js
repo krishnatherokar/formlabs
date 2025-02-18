@@ -23,6 +23,13 @@ const userSchema = mongoose.Schema({
       },
     },
   ],
+  resArr: [
+    // for storing the response ids only (to use mongoose populate)
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "response",
+    },
+  ],
 });
 
 module.exports = mongoose.model("user", userSchema);
