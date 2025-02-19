@@ -1,0 +1,22 @@
+@import '../../assets/styles/variables.module.css';
+
+.errorContainer {
+    margin: 30vh auto;
+    padding: 20px;
+    font-size: var(--m);
+    max-width: var(--card-max-w);
+    background: linear-gradient(90deg, var(--red-800-40), transparent);
+    border-left: 4px solid var(--red-800);
+    border-radius: var(--rad-s);
+}
+
+.errorSvg {
+    margin: 0 8px -6px 0;
+    stroke: var(--red-800);
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke-width: 1.5;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+}

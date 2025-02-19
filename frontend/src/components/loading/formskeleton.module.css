@@ -1,0 +1,35 @@
+@import '../../assets/styles/variables.module.css';
+
+.skeleton {
+    animation: pulse 1.5s infinite;
+    max-width: var(--card-max-w);
+    margin: 10px auto;
+}
+
+.card {
+    padding: 30px;
+    margin: 10px auto;
+    background-color: var(--card-background);
+    border-radius: var(--rad-m);
+}
+
+.title {
+    padding: 16px;
+    max-width: 200px;
+    background-color: var(--card-background);
+    border-radius: var(--rad-m);
+}
+
+@keyframes pulse {
+    0% {
+        opacity: 1;
+    }
+
+    50% {
+        opacity: 0.4;
+    }
+
+    100% {
+        opacity: 1;
+    }
+}

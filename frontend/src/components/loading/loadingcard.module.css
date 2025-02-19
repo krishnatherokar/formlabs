@@ -1,0 +1,22 @@
+@import '../../assets/styles/variables.module.css';
+
+.loadingContainer {
+    margin: 30vh auto;
+    padding: 20px;
+    font-size: var(--m);
+    max-width: var(--card-max-w);
+    background: linear-gradient(90deg, var(--blue-800-40), transparent);
+    border-left: 4px solid var(--blue-800);
+    border-radius: var(--rad-s);
+}
+
+.loader {
+    margin: -4px 8px -4px 0;
+    width: 20px;
+    height: 20px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--blue-800);
+    border-radius: 50%;
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
