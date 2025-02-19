@@ -35,7 +35,7 @@ const useFetch = (url, { body = null, ...options } = {}, method = "GET") => {
           error:
             err.response &&
             !err.response.headers["content-type"].includes("text/html")
-              ? `Error ${err.response.status}: ${err.response.data}`
+              ? err.response.data
               : err.message,
         });
       }

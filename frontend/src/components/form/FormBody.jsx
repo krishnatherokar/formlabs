@@ -6,6 +6,8 @@ import useSubmit from "../../hooks/useSubmit";
 import { changeLocalAns, deleteLocalAns } from "../../utils/handleLocalSync";
 import { UserContext } from "../../context/UserContext";
 import { useLocation, useNavigate } from "react-router-dom";
+import Error from "../error/Error";
+import LoadingCard from "../loading/LoadingCard";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
@@ -67,41 +69,39 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
     navigate(`/auth?redirectTo=${location.pathname}`);
   };
 
-  if (submitError) return <div>{submitError}</div>;
-  if (url && submitLoading) return <div>Loading...</div>;
-  if (submitResponse) return <div>Response submitted</div>;
+  if (submitError) return <Error>{submitError}</Error>;
+  if (url && submitLoading)
+    return <LoadingCard>Submitting Response...</LoadingCard>;
+  if (submitResponse) return null;
 
   return (
     <section>
       <h1>{data.title}</h1>
       <p>{data.description}</p>
 
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} className={styles.formbody}>
         {data.questions.map((q, i) => {
           const Component = ListOfComponents[q.component];
           return (
-            <Component
-              key={i}
-              index={i}
-              details={q}
-              val={answers ? answers[i] : null}
-              readonly={readonly}
-              setAns={setAns}
-            />
+            <div className={styles.card} key={i}>
+              <Component
+                index={i}
+                details={q}
+                val={answers ? answers[i] : null}
+                readonly={readonly}
+                setAns={setAns}
+              />
+            </div>
           );
         })}
         {readonly ? null : (
           <>
             {isLogged ? null : (
-              <button onClick={redirectToLogin} className={styles.submitButton}>
+              <button type="button" onClick={redirectToLogin}>
                 Login
               </button>
             )}
-            <button
-              className={styles.submitButton}
-              type="submit"
-              disabled={!isLogged}
-            >
+            <button type="submit" disabled={!isLogged}>
               Submit
             </button>
           </>

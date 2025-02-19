@@ -4,6 +4,8 @@ import useFetch from "../../hooks/useFetch";
 import FormBody from "../../components/form/FormBody";
 import { deleteLocalAns } from "../../utils/handleLocalSync";
 import { UserContext } from "../../context/UserContext";
+import Error from "../../components/error/Error";
+import FormSkeleton from "../../components/loading/FormSkeleton";
 
 const ViewForm = () => {
   const { id } = useParams();
@@ -29,8 +31,8 @@ const ViewForm = () => {
     }
   }, [user, id, data, navigate]);
 
-  if (error) return <div>{error}</div>;
-  if (loading) return <div>Loading...</div>;
+  if (error) return <Error>{error}</Error>;
+  if (loading) return <FormSkeleton />;
 
   return (
     <FormBody data={data} readonly={false} isLogged={user ? true : false} />

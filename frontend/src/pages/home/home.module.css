@@ -1,7 +1,0 @@
-@import '../../assets/styles/variables.module.css';
-
-.title {
-    color: var(--text-color);
-    background-color: var(--background-color);
-    display: inline-block;
-}

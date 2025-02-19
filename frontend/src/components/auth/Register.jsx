@@ -24,27 +24,33 @@ const Register = ({ handleSubmit, handleChange, handleOAuth }) => {
           onChange={handleChange}
           type="email"
           name="email"
-          placeholder="email"
+          placeholder="Email"
           ref={emailRef}
           required
         />
-        <input
-          onChange={handleChange}
-          type="password"
-          name="password"
-          placeholder="password"
-          required
-        />
+        <br />
+        <button type="button" onClick={sendOtp}>
+          Send Otp
+        </button>
+        <br />
         <input
           onChange={handleChange}
           type="number"
           name="otp"
-          placeholder="otp"
+          placeholder="OTP"
           required
         />
+        <br />
+        <input
+          onChange={handleChange}
+          type="password"
+          name="password"
+          placeholder="Password"
+          required
+        />
+        <br />
         <button type="submit">Register</button>
       </form>
-      <button onClick={sendOtp}>Send Otp</button>
 
       <p>OR</p>
       <button onClick={handleOAuth}>Continue with Google</button>

@@ -4,6 +4,8 @@ import { UserContext } from "../../context/UserContext";
 import Login from "../../components/auth/Login";
 import Register from "../../components/auth/Register";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Error from "../../components/error/Error";
+import LoadingCard from "../../components/loading/LoadingCard";
 
 const Auth = ({ login }) => {
   const [url, setUrl] = useState(null);
@@ -54,9 +56,9 @@ const Auth = ({ login }) => {
 
   const controllers = { handleSubmit, handleChange, handleOAuth };
 
-  if (data) return <div>Logged in</div>;
-  if (error) return <div>{error}</div>;
-  if (url) return <div>Checking credentials...</div>;
+  if (data) return null;
+  if (error) return <Error>{error}</Error>;
+  if (url) return <LoadingCard>Checking credentials...</LoadingCard>;
 
   return login ? <Login {...controllers} /> : <Register {...controllers} />;
 };

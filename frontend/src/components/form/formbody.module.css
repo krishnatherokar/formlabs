@@ -1,5 +1,13 @@
 @import '../../assets/styles/variables.module.css';
 
-.submitButton {
-    padding: 10px;
+.formbody {
+    max-width: var(--card-max-w);
+    margin: 0 auto;
+}
+
+.card {
+    padding: 20px;
+    margin: 20px auto;
+    background-color: var(--card-background);
+    border-radius: var(--rad-m);
 }
