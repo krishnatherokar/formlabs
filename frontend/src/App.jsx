@@ -13,8 +13,8 @@ const App = () => {
     <Routes>
       {HomeRoutes}
       {UserRoutes(user)}
-      {FormRoutes}
-      {AuthRoutes(user)}
+      {FormRoutes(user)}
+      {AuthRoutes()}
       <Route path="*" element={<NotFound />} />
     </Routes>
   );
