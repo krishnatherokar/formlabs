@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { MultiChoice, MultiSelect, TextAnswer } from "../questions";
+import { MultiChoice, MultiSelect, TextAnswer } from "./questions";
 import styles from "./formbody.module.css";
 import useFetch from "../../hooks/useFetch";
 import useSubmit from "../../hooks/useSubmit";
@@ -82,15 +82,16 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
       <form onSubmit={handleSubmit} className={styles.formbody}>
         {data.questions.map((q, i) => {
           const Component = ListOfComponents[q.component];
+          const props = {
+            index: i,
+            details: q,
+            val: answers ? answers[i] : null,
+            readonly,
+            setAns,
+          };
           return (
             <div className={styles.card} key={i}>
-              <Component
-                index={i}
-                details={q}
-                val={answers ? answers[i] : null}
-                readonly={readonly}
-                setAns={setAns}
-              />
+              <Component {...props} />
             </div>
           );
         })}
