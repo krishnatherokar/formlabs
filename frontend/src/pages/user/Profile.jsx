@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { UserContext } from "../../context/UserContext";
 import axios from "axios";
+import Profilebody from "../../components/user/Profilebody";
 
 const Profile = () => {
   const { user, setUser } = useContext(UserContext);
@@ -17,13 +18,12 @@ const Profile = () => {
     }
   };
 
-  return (
-    <>
-      <h2>{user.name}</h2>
-      <div>{user.email}</div>
-      <button onClick={logOut}>Logout</button>
-    </>
-  );
+  const props = {
+    user,
+    logOut,
+  };
+
+  return <Profilebody {...props} />;
 };
 
 export default Profile;

@@ -1,0 +1,18 @@
+.flex {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    width: calc(50vw - 10px);
+    height: calc(50vh);
+    overflow-x: scroll;
+}
+
+.flex div {
+    margin: 20px;
+    width: max-content;
+}
+
+.mainFlex {
+    display: flex;
+    justify-content: space-around;
+}
