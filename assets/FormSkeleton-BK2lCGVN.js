@@ -1,0 +1,1 @@
+import{j as e}from"./index-D-b0auR4.js";const t="_skeleton_4jwop_1",o="_card_4jwop_13",a="_title_4jwop_27",s={skeleton:t,card:o,title:a},l=()=>e.jsxs("div",{className:s.skeleton,children:[e.jsx("div",{className:s.title}),e.jsx("div",{className:s.card}),e.jsx("div",{className:s.card})]}),n=()=>e.jsx("div",{className:`${s.skeleton} ${s.card}`});export{n as C,l as F};
