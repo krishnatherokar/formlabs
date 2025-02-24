@@ -12,6 +12,7 @@ const useFetch = (url, { body = null, ...options } = {}, method = "GET") => {
     const controller = new AbortController();
     const config = {
       ...options,
+      withCredentials: true,
       signal: controller.signal,
       headers: {
         "Content-Type": "application/json",
