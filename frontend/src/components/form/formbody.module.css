@@ -1,13 +1,30 @@
-@import '../../assets/styles/variables.module.css';
-
-.formbody {
+.formBody,
+.formDetails {
     max-width: var(--card-max-w);
     margin: 0 auto;
 }
 
-.card {
-    padding: 20px;
-    margin: 20px auto;
-    background-color: var(--card-background);
-    border-radius: var(--rad-m);
+.formDetails {
+    padding: 0 20px 20px 20px;
+}
+
+@media (min-width: 801px) {
+    .mainBody {
+        display: flex;
+    }
+
+    .detailsWrap {
+        flex: 0 0 30%;
+        position: sticky;
+        top: 70px;
+        height: calc(100vh - 100px);
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+    }
+
+    .formBody {
+        flex: 0 0 70%;
+        margin: 0 auto;
+    }
 }

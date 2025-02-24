@@ -1,0 +1,91 @@
+.formbody {
+    max-width: var(--card-max-w);
+    margin: 0 auto;
+}
+
+.titleInput {
+    font-size: var(--l);
+}
+
+.addIcon {
+    height: 24px;
+    width: 24px;
+    margin: -10px 0 -7px -6px;
+    fill: var(--white-800);
+}
+
+.questionInput,
+.descriptionInput {
+    font-size: var(--m);
+}
+
+.optionInput {
+    font-size: var(--s);
+    margin: 6px 0;
+}
+
+.addbutton {
+    position: relative;
+    text-align: left;
+    color: var(--white-800);
+    background-color: var(--blue-800);
+}
+
+.addbutton svg {
+    margin: -10px 0 -5px -6px;
+}
+
+.optionbutton {
+    font-size: var(--s);
+    background: var(--blue-800);
+    color: var(--white-800);
+    border-radius: 30px;
+}
+
+.flex {
+    margin: 10px 0;
+    width: 100%;
+    display: flex;
+}
+
+.optionContainer {
+    height: 0;
+    width: 0;
+    overflow: hidden;
+    opacity: 0;
+    z-index: 8;
+    position: absolute;
+    left: 0;
+    border-radius: var(--rad-s);
+    padding: 10px;
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+}
+
+.top {
+    bottom: 100%;
+}
+
+.bottom {
+    top: 100%;
+}
+
+.choices {
+    width: max-content;
+    padding: 8px;
+    margin: 2px;
+    border-radius: var(--rad-s);
+    border: 2px solid transparent;
+}
+
+.choices:hover {
+    border: 2px solid var(--blue-800);
+}
+
+.addbutton:hover .optionContainer,
+.addbutton:focus .optionContainer {
+    height: fit-content;
+    width: fit-content;
+    opacity: 1;
+    display: block;
+}

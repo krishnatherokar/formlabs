@@ -5,9 +5,11 @@ import useFetch from "../../hooks/useFetch";
 import useSubmit from "../../hooks/useSubmit";
 import { changeLocalAns, deleteLocalAns } from "../../utils/handleLocalSync";
 import { UserContext } from "../../context/UserContext";
-import { useLocation, useNavigate } from "react-router-dom";
 import Error from "../error/Error";
 import LoadingCard from "../loading/LoadingCard";
+import FullScreen from "../containers/FullScreen";
+import Card from "../containers/Card";
+import LoginButton from "../button/LoginButton";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
@@ -31,22 +33,12 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
     setAnswers(JSON.parse(localStorage.getItem(id)));
   }
 
-  const location = useLocation();
-  const navigate = useNavigate();
-
   const { url, handleSubmit } = useSubmit(`/form/submit/${id}`);
   const {
     data: submitResponse,
     loading: submitLoading,
     error: submitError,
-  } = useFetch(
-    url,
-    {
-      body: JSON.stringify({ answers }),
-      withCredentials: true,
-    },
-    "POST"
-  );
+  } = useFetch(url, { body: JSON.stringify({ answers }) }, "POST");
 
   useEffect(() => {
     if (answers) changeLocalAns(id, answers);
@@ -65,49 +57,55 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
     multiselect: MultiSelect,
   };
 
-  const redirectToLogin = () => {
-    navigate(`/auth?redirectTo=${location.pathname}`);
-  };
-
-  if (submitError) return <Error>{submitError}</Error>;
+  if (submitError)
+    return (
+      <FullScreen>
+        <Error>{submitError}</Error>
+      </FullScreen>
+    );
   if (url && submitLoading)
-    return <LoadingCard>Submitting Response...</LoadingCard>;
+    return (
+      <FullScreen>
+        <LoadingCard>Submitting Response...</LoadingCard>
+      </FullScreen>
+    );
   if (submitResponse) return null;
 
   return (
-    <section>
-      <h1>{data.title}</h1>
-      <p>{data.description}</p>
-
-      <form onSubmit={handleSubmit} className={styles.formbody}>
-        {data.questions.map((q, i) => {
-          const Component = ListOfComponents[q.component];
-          const props = {
-            index: i,
-            details: q,
-            val: answers ? answers[i] : null,
-            readonly,
-            setAns,
-          };
-          return (
-            <div className={styles.card} key={i}>
-              <Component {...props} />
-            </div>
-          );
-        })}
-        {readonly ? null : (
-          <>
-            {isLogged ? null : (
-              <button type="button" onClick={redirectToLogin}>
-                Login
+    <section className={styles.mainBody}>
+      <div className={styles.detailsWrap}>
+        <div className={styles.formDetails}>
+          <h1>{data.title}</h1>
+          <p>{data.description}</p>
+        </div>
+      </div>
+      <div className={styles.formBody}>
+        <form onSubmit={handleSubmit}>
+          {data.questions.map((q, i) => {
+            const Component = ListOfComponents[q.component];
+            const props = {
+              index: i,
+              details: q,
+              val: answers ? answers[i] : null,
+              readonly,
+              setAns,
+            };
+            return (
+              <Card key={i}>
+                <Component {...props} />
+              </Card>
+            );
+          })}
+          {readonly ? null : (
+            <>
+              {isLogged ? null : <LoginButton />}
+              <button type="submit" disabled={!isLogged}>
+                Submit
               </button>
-            )}
-            <button type="submit" disabled={!isLogged}>
-              Submit
-            </button>
-          </>
-        )}
-      </form>
+            </>
+          )}
+        </form>
+      </div>
     </section>
   );
 };

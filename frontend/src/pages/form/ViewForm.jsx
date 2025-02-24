@@ -6,6 +6,7 @@ import { deleteLocalAns } from "../../utils/handleLocalSync";
 import { UserContext } from "../../context/UserContext";
 import Error from "../../components/error/Error";
 import FormSkeleton from "../../components/loading/FormSkeleton";
+import FullScreen from "../../components/containers/FullScreen";
 
 const ViewForm = () => {
   const { id } = useParams();
@@ -31,12 +32,21 @@ const ViewForm = () => {
     }
   }, [user, id, data, navigate]);
 
-  if (error) return <Error>{error}</Error>;
+  const props = {
+    data,
+    readonly: false,
+    isLogged: user ? true : false,
+  };
+
+  if (error)
+    return (
+      <FullScreen>
+        <Error>{error}</Error>
+      </FullScreen>
+    );
   if (loading) return <FormSkeleton />;
 
-  return (
-    <FormBody data={data} readonly={false} isLogged={user ? true : false} />
-  );
+  return <FormBody {...props} />;
 };
 
 export default ViewForm;

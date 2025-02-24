@@ -1,0 +1,33 @@
+.hiddenInput {
+    display: none;
+}
+
+.optionLabel {
+    display: block;
+    line-height: 3;
+    font-size: var(--s);
+}
+
+.question {
+    margin: 0 0 10px 0;
+}
+
+.optionLabel:has(input:disabled) {
+    opacity: .4;
+}
+
+.optionLabel:has(input:disabled):has(:checked) {
+    opacity: 1;
+}
+
+.checkedSvg,
+.uncheckedSvg {
+    height: 30px;
+    width: 30px;
+    fill: var(--text-color);
+    margin: 0 10px -10px 0;
+}
+
+.checkedSvg {
+    fill: var(--blue-800);
+}
