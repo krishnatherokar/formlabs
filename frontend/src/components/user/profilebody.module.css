@@ -1,18 +1,173 @@
-.flex {
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    width: calc(50vw - 10px);
-    height: calc(50vh);
-    overflow-x: scroll;
+/*
+
+.mainBody: wraps all the content of profile
+.userInfo: wraps the information of user (name, email)
+.sideInfo: the 2nd component in mainBody
+.listWrapper: component inside the sideInfo that wraps a text div and a listContainer
+.listContainer: wraps the actual list of cards
+
+*/
+
+.profilePhoto {
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
 }
 
-.flex div {
-    margin: 20px;
-    width: max-content;
+.listTitle {
+    margin: 0 0 10px 10px;
+    display: inline-block;
 }
 
-.mainFlex {
+.listWrapper {
+    position: relative;
+}
+
+.createButton {
+    position: absolute;
+    color: var(--blue-800);
+    cursor: pointer;
+    border: 2px solid var(--blue-800);
+    padding: 4px 10px;
+    border-radius: 30px;
+    right: 0;
+    margin: -10px 10px 0 10px;
+}
+
+.openForm,
+.deleteSvg {
+    height: 24px;
+    width: 24px;
+    margin: 10px 0 0 0;
+    cursor: pointer;
+}
+
+.openForm {
+    float: left;
+    fill: var(--blue-800);
+}
+
+.deleteSvg {
+    float: right;
+    fill: var(--red-800);
+}
+
+.userInfo {
+    margin: 0 0 40px 0;
+    word-break: break-all;
+}
+
+.logoutButton {
+    cursor: pointer;
+    margin: 0;
+    color: var(--red-800);
+    background: none;
+}
+
+.title,
+.description {
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: var(--card-max-w);
+}
+
+.description {
+    font-size: var(--s);
+    color: var(--text-color-faint);
+}
+
+.listContainer {
     display: flex;
-    justify-content: space-around;
+    gap: 20px;
+    padding: 10px;
+}
+
+.listContainer div {
+    min-width: 200px;
+    margin: 0;
+}
+
+@media (max-width: 600px) {
+    .userInfo {
+        display: flex;
+        gap: 20px;
+        justify-content: center;
+    }
+
+    .listContainer {
+        width: calc(100vw - 20px);
+        overflow-x: scroll;
+    }
+}
+
+@media (min-width: 601px) and (max-width: 1000px) {
+
+    .userInfo {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+    }
+
+    .mainBody {
+        display: flex;
+        flex-direction: column;
+        height: calc(100vh - 100px);
+    }
+
+    .sideInfo {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        width: calc(100vw - 20px);
+    }
+
+    .listWrapper {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .listContainer {
+        flex: 1;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
+}
+
+@media (min-width: 1001px) {
+    .mainBody {
+        display: flex;
+    }
+
+    .userInfo {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    .sideInfo {
+        flex: 2;
+        display: flex;
+    }
+
+    .listWrapper {
+        flex: 1;
+        display: flex;
+        margin: 0;
+        flex-direction: column;
+        height: calc(100vh - 100px);
+    }
+
+    .listContainer {
+        flex: 1;
+        min-height: 0;
+        display: flex;
+        flex-direction: column;
+        overflow-y: scroll;
+    }
 }
