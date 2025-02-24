@@ -6,17 +6,21 @@ import { AuthRoutes } from "./routes/AuthRoutes";
 import NotFound from "./pages/notfound/NotFound";
 import { useContext } from "react";
 import { UserContext } from "./context/UserContext";
+import Navbar from "./components/navbar/Navbar";
 
 const App = () => {
   const { user } = useContext(UserContext);
   return (
-    <Routes>
-      {HomeRoutes}
-      {UserRoutes(user)}
-      {FormRoutes(user)}
-      {AuthRoutes()}
-      <Route path="*" element={<NotFound />} />
-    </Routes>
+    <>
+      <Navbar />
+      <Routes>
+        {HomeRoutes}
+        {UserRoutes(user)}
+        {FormRoutes(user)}
+        {AuthRoutes()}
+        <Route path="*" element={<NotFound />} />
+      </Routes>
+    </>
   );
 };
 

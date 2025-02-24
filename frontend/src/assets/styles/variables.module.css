@@ -8,11 +8,12 @@
     --blue-800-40: #2554ff20;
     --red-800: #EF233C;
     --red-800-40: #EF233C20;
+    --white-800: #F4F4F9;
 
     /* font sizes */
-    --s: 0.8rem;
-    --m: 16px;
-    --l: 1.4rem;
+    --s: 0.9rem;
+    --m: 18px;
+    --l: 1.6rem;
     --xl: 2rem;
 
     /* sizes */
@@ -22,6 +23,8 @@
     --rad-s: 4px;
     --rad-m: 8px;
     --rad-l: 16px;
+
+    --transition-property: none;
 }
 
 [theme="dark"] {
@@ -29,14 +32,4 @@
     --card-background: #242424;
     --text-color: #CED4DA;
     --text-color-faint: #a7a7a7;
-}
-
-@keyframes spin {
-    0% {
-        transform: rotate(0deg);
-    }
-
-    100% {
-        transform: rotate(360deg);
-    }
 }

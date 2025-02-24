@@ -1,7 +1,5 @@
-@import '../../assets/styles/variables.module.css';
-
 .loadingContainer {
-    margin: 30vh auto;
+    margin: 10px auto;
     padding: 20px;
     font-size: var(--m);
     max-width: var(--card-max-w);
@@ -19,4 +17,14 @@
     border-radius: 50%;
     display: inline-block;
     animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
 }

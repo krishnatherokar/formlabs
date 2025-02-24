@@ -1,35 +1,44 @@
 @import './variables.module.css';
-@import url('https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Outfit&display=swap');
+
+* {
+    transition: opacity .4s, border .4s, var(--transition-property) .4s;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent;
+}
 
 body {
     margin: 0;
-    padding: 30px 10px;
+    padding: 70px 10px 30px 10px;
     font-size: var(--m);
-    font-family: "Poppins", serif;
+    font-family: "Outfit", serif;
     line-height: 1.6;
     color: var(--text-color);
     background-color: var(--background-color);
 }
 
+::-webkit-scrollbar {
+    background: transparent;
+    width: 4px;
+    height: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: var(--card-background);
+    border-radius: var(--rad-s);
+    border: none;
+}
+
 input {
     font-size: var(--m);
     border: none;
-    color: var(--text-color-faint);
+    color: var(--text-color);
     background-color: transparent;
+    width: 100%;
 }
 
 input:focus {
-    border: none;
     outline: none;
-}
-
-input:disabled:checked {
-    filter: invert(100%) brightness(4);
-}
-
-label:has(input:disabled:not(:checked)) {
-    color: var(--text-color-faint);
-    opacity: 0.5;
 }
 
 button {
@@ -38,16 +47,21 @@ button {
     font-size: var(--m);
     border: none;
     cursor: pointer;
+    border-radius: var(--rad-s);
     color: var(--text-color);
-    background: none;
+    background: var(--card-background);
 }
 
 button:disabled {
     cursor: not-allowed;
     color: var(--text-color-faint);
-    opacity: 0.5;
+    opacity: 0.4;
 }
 
-label {
-    display: block;
+a {
+    text-decoration: none;
+}
+
+svg:active {
+    transform: scale(.9);
 }

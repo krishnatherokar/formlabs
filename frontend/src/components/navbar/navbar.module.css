@@ -7,3 +7,21 @@
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
+
+.navContainer svg {
+    margin: 10px;
+    padding: 0;
+    height: 30px;
+    width: 30px;
+    cursor: pointer;
+    float: right;
+    fill: var(--text-color);
+}
+
+.brandName {
+    color: var(--text-color);
+    margin: 0px 10px;
+    font-family: "Grechen Fuemen";
+    font-size: var(--xl);
+    display: inline-block;
+}
