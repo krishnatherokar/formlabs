@@ -1,0 +1,1 @@
+import{j as r}from"./index-CJ_QkDsw.js";import{C as o}from"./Card-BfTC8LLx.js";import{F as t}from"./FullScreen-C2e7fdHh.js";const m=()=>r.jsx(t,{children:r.jsx(o,{children:"Under Construction..."})});export{m as default};
