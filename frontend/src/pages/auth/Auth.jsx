@@ -4,21 +4,12 @@ import { UserContext } from "../../context/UserContext";
 import Login from "../../components/auth/Login";
 import Register from "../../components/auth/Register";
 import { useNavigate, useSearchParams } from "react-router-dom";
-import Error from "../../components/error/Error";
-import LoadingCard from "../../components/loading/LoadingCard";
 
 const Auth = ({ login }) => {
   const [url, setUrl] = useState(null);
   const { user, setUser } = useContext(UserContext);
   const [credentials, setCredentials] = useState({});
-  const { data, loading, error } = useFetch(
-    url,
-    {
-      body: credentials,
-      withCredentials: true,
-    },
-    "POST"
-  );
+  const { data, loading, error } = useFetch(url, { body: credentials }, "POST");
 
   // to get the queries in the url
   const [searchParams] = useSearchParams();
@@ -39,27 +30,22 @@ const Auth = ({ login }) => {
     );
   };
 
-  const handleOAuth = () => {
-    window.location.href = `${
-      import.meta.env.VITE_APP_API_URL
-    }/login/google?redirectTo=${redirectTo}`;
-    // the url has redirectTo query to indicate where to redirect the user after successfull login
-  };
-
   useEffect(() => {
-    if (data) setUser(data);
-  }, [data]);
+    if (data) {
+      setUser(data);
+    }
+    if (user) {
+      navigate(redirectTo);
+    }
+    if (error) {
+      setUrl(null);
+    }
+  }, [data, user, error]);
 
-  useEffect(() => {
-    if (user) navigate(redirectTo);
-  }, [user]);
-
-  const controllers = { handleSubmit, handleChange, handleOAuth };
+  const props = { handleSubmit, handleChange, error, url };
 
   if (data) return null;
-  if (error) return <Error>{error}</Error>;
-  if (url) return <LoadingCard>Checking credentials...</LoadingCard>;
 
-  return login ? <Login {...controllers} /> : <Register {...controllers} />;
+  return login ? <Login {...props} /> : <Register {...props} />;
 };
 export default Auth;

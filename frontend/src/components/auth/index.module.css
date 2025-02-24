@@ -1,0 +1,60 @@
+.loginButton {
+    display: block;
+    margin: 10px auto;
+    background: var(--blue-800);
+    color: var(--white-800);
+    border-radius: var(--rad-s);
+}
+
+.loader {
+    margin: -4px 8px -6px 0;
+    width: 20px;
+    height: 20px;
+    border: 3px solid transparent;
+    border-top: 3px solid var(--background-color);
+    border-radius: 50%;
+    display: inline-block;
+    animation: spin 1s linear infinite;
+}
+
+.link {
+    display: inline-block;
+    margin: 0 0 0 10px;
+    color: var(--blue-800);
+}
+
+@keyframes spin {
+    0% {
+        transform: rotate(0deg);
+    }
+
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+.authContainer {
+    max-width: var(--card-max-w);
+    margin: 0 auto;
+    text-align: center;
+}
+
+.authContainer input {
+    max-width: 300px;
+    margin: 14px auto;
+    padding: 10px;
+    background: var(--card-background);
+    border-radius: var(--rad-s);
+    border-bottom: 4px solid var(--blue-800);
+}
+
+.flexOtp {
+    max-width: 300px;
+    display: flex;
+    margin: 0 auto;
+}
+
+.flexOtp button {
+    font-size: var(--s);
+    margin: auto 0 auto 10px;
+}

@@ -1,6 +1,14 @@
-const Login = ({ handleSubmit, handleChange, handleOAuth }) => {
+import { useNavigate } from "react-router-dom";
+import GoogleButton from "../button/GoogleButton";
+import Error from "../error/Error";
+import styles from "./index.module.css";
+
+const Login = ({ handleSubmit, handleChange, error, url }) => {
+  const navigate = useNavigate();
   return (
-    <>
+    <div className={styles.authContainer}>
+      <GoogleButton />
+      <p>OR</p>
       <form onSubmit={handleSubmit}>
         <input
           onChange={handleChange}
@@ -9,7 +17,6 @@ const Login = ({ handleSubmit, handleChange, handleOAuth }) => {
           placeholder="Email"
           required
         />
-        <br />
         <input
           onChange={handleChange}
           type="password"
@@ -17,12 +24,22 @@ const Login = ({ handleSubmit, handleChange, handleOAuth }) => {
           placeholder="Password"
           required
         />
-        <br />
-        <button type="submit">Login</button>
+        {error ? <Error>{error}</Error> : null}
+        {url ? (
+          <button type="button" className={styles.loginButton}>
+            <span className={styles.loader}></span>Login
+          </button>
+        ) : (
+          <button type="submit" className={styles.loginButton}>
+            Login
+          </button>
+        )}
       </form>
-      <p>OR</p>
-      <button onClick={handleOAuth}>Continue with Google</button>
-    </>
+      Not a member?
+      <span onClick={() => navigate("register")} className={styles.link}>
+        Register
+      </span>
+    </div>
   );
 };
 export default Login;
