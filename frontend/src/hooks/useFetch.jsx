@@ -23,10 +23,18 @@ const useFetch = (url, { body = null, ...options } = {}, method = "GET") => {
     async function fetchData() {
       setstate({ data: null, loading: true, error: null });
       try {
-        let response =
-          method == "GET"
-            ? await axios.get(url, config)
-            : await axios.post(url, body, config);
+        let response;
+
+        switch (method) {
+          case "GET":
+            response = await axios.get(url, config);
+            break;
+          case "POST":
+            response = await axios.post(url, body, config);
+            break;
+          case "DELETE":
+            response = await axios.delete(url, config);
+        }
         let data = response.data;
         setstate({ data: data, loading: false, error: null });
       } catch (err) {
