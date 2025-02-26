@@ -4,7 +4,6 @@ import Card from "../containers/Card";
 import { useEffect, useRef, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import Error from "../error/Error";
-import { useNavigate } from "react-router-dom";
 
 const ContentList = ({ contentType }) => {
   const [content, setContent] = useState(null);
@@ -16,12 +15,20 @@ const ContentList = ({ contentType }) => {
     }?toSkip=${skip}`
   );
 
-  const navigate = useNavigate();
-  const openForm = (id) => {
-    navigate(`/form/${contentType == "forms" ? "" : "r/"}${id}`);
+  const openForm = (form) => {
+    if (contentType == "forms") {
+      window.open(
+        `${import.meta.env.VITE_APP_BASE_URL}/form/fr/${form._id}?title=${
+          form.title
+        }&description=${form.description}`
+      );
+    } else {
+      window.open(`${import.meta.env.VITE_APP_BASE_URL}/form/r/${form._id}`);
+    }
   };
 
   const loaderRef = useRef(null);
+  const containerRef = useRef(null);
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
@@ -29,7 +36,9 @@ const ContentList = ({ contentType }) => {
           setSkip((prev) => prev + 1);
       },
       {
-        threshold: 0.1, // Trigger when 10% of the element is visible
+        root: containerRef.current,
+        rootMargin: "0px 200px 200px 0px",
+        threshold: 0.01,
       }
     );
 
@@ -47,7 +56,7 @@ const ContentList = ({ contentType }) => {
   if (error) return <Error>{error}</Error>;
 
   return (
-    <div className={styles.listContainer}>
+    <div ref={containerRef} className={styles.listContainer}>
       {content ? (
         content.length ? (
           content.map((form, i) => {
@@ -57,7 +66,7 @@ const ContentList = ({ contentType }) => {
                 <span className={styles.description}>{form.description}</span>
                 <svg
                   className={styles.openForm}
-                  onClick={() => openForm(form._id)}
+                  onClick={() => openForm(form)}
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 -960 960 960"
                 >
