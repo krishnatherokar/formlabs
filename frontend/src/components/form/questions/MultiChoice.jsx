@@ -3,24 +3,23 @@ import { useState } from "react";
 
 const MultiChoice = ({ index, details, val, readonly, setAns }) => {
   const [selected, setSelected] = useState(val);
-  const handleChange = (e) => {
-    const { value } = e.target;
-    setSelected(value);
-    setAns(index, value);
+  const handleChange = (i) => {
+    setSelected(i);
+    setAns(index, i);
   };
 
   return (
     <div>
       <div className={styles.question}>{details.question}</div>
       {details.options.map((option, i) => {
-        const checked = selected == option;
+        const checked = selected == i;
         return (
           <label className={styles.optionLabel} key={i}>
             <input
               className={styles.hiddenInput}
               type="radio"
               name="multichoice"
-              onChange={handleChange}
+              onChange={() => handleChange(i)}
               value={option}
               checked={checked}
               disabled={readonly}

@@ -2,7 +2,6 @@ import { useContext, useEffect, useState } from "react";
 import { MultiChoice, MultiSelect, TextAnswer } from "./questions";
 import styles from "./formbody.module.css";
 import useFetch from "../../hooks/useFetch";
-import useSubmit from "../../hooks/useSubmit";
 import { changeLocalAns, deleteLocalAns } from "../../utils/handleLocalSync";
 import { UserContext } from "../../context/UserContext";
 import Error from "../error/Error";
@@ -33,7 +32,12 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
     setAnswers(JSON.parse(localStorage.getItem(id)));
   }
 
-  const { url, handleSubmit } = useSubmit(`/form/submit/${id}`);
+  const [url, setUrl] = useState(null);
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setUrl(`${import.meta.env.VITE_APP_API_URL}/form/submit/${id}`);
+  };
+
   const {
     data: submitResponse,
     loading: submitLoading,

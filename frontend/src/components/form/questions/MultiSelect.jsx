@@ -3,12 +3,12 @@ import { useEffect, useState } from "react";
 
 const MultiSelect = ({ index, details, val, readonly, setAns }) => {
   const [selected, setSelected] = useState(val ? JSON.parse(val) : []);
-  const handleChange = (e) => {
-    const { value, checked } = e.target;
+  const handleChange = (e, i) => {
+    const { checked } = e.target;
     setSelected((prev) => {
       const updated = checked
-        ? [...prev, value]
-        : prev.filter((element) => element != value);
+        ? [...prev, i]
+        : prev.filter((element) => element != i);
       return updated;
     });
   };
@@ -21,14 +21,14 @@ const MultiSelect = ({ index, details, val, readonly, setAns }) => {
     <div>
       <div className={styles.question}>{details.question}</div>
       {details.options.map((option, i) => {
-        const checked = selected.includes(option);
+        const checked = selected.includes(i);
         return (
           <label className={styles.optionLabel} key={i}>
             <input
               className={styles.hiddenInput}
               type="checkbox"
               name="multiselect"
-              onChange={handleChange}
+              onChange={(e) => handleChange(e, i)}
               value={option}
               checked={checked}
               disabled={readonly}
