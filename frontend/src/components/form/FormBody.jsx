@@ -22,9 +22,11 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
   );
 
   const setAns = (i, stringToAdd) => {
-    let newArr = [...answers];
-    newArr[i] = stringToAdd;
-    setAnswers(newArr);
+    setAnswers((prevAnswers) => {
+      const newArr = [...prevAnswers];
+      newArr[i] = stringToAdd;
+      return newArr;
+    });
   };
 
   if (!answers) {
