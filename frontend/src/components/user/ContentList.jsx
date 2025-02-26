@@ -4,6 +4,7 @@ import Card from "../containers/Card";
 import { useEffect, useRef, useState } from "react";
 import useFetch from "../../hooks/useFetch";
 import Error from "../error/Error";
+import DeletePrompt from "../containers/DeletePrompt";
 
 const ContentList = ({ contentType }) => {
   const [content, setContent] = useState(null);
@@ -44,7 +45,7 @@ const ContentList = ({ contentType }) => {
 
     if (loaderRef.current) observer.observe(loaderRef.current);
     return () => observer.disconnect();
-  }, [loaderRef, data]);
+  }, [loaderRef, data, end]);
 
   useEffect(() => {
     if (data) {
@@ -53,15 +54,23 @@ const ContentList = ({ contentType }) => {
     }
   }, [data]);
 
+  const [promptProps, setPromptProps] = useState(null);
+  const refreshList = () => {
+    setContent(null);
+    setSkip(0);
+    setEnd(false);
+  };
+
   if (error) return <Error>{error}</Error>;
 
   return (
     <div ref={containerRef} className={styles.listContainer}>
+      {promptProps && <DeletePrompt {...promptProps} callback={refreshList} />}
       {content ? (
         content.length ? (
           content.map((form, i) => {
             return (
-              <Card key={i}>
+              <Card nameOfClass={styles.card} key={i}>
                 <span className={styles.title}>{form.title}</span>
                 <span className={styles.description}>{form.description}</span>
                 <svg
@@ -74,6 +83,13 @@ const ContentList = ({ contentType }) => {
                 </svg>
                 <svg
                   className={styles.deleteSvg}
+                  onClick={() =>
+                    setPromptProps({
+                      form,
+                      content: contentType,
+                      setPromptProps,
+                    })
+                  }
                   xmlns="http://www.w3.org/2000/svg"
                   viewBox="0 -960 960 960"
                 >
@@ -83,7 +99,7 @@ const ContentList = ({ contentType }) => {
             );
           })
         ) : (
-          <Card>No Data</Card>
+          <Card nameOfClass={styles.card}>No Data</Card>
         )
       ) : (
         <>
@@ -92,7 +108,7 @@ const ContentList = ({ contentType }) => {
           <CardSkeleton />
         </>
       )}
-      {end ? null : <CardSkeleton ref={loaderRef} />}
+      {!end && <CardSkeleton ref={loaderRef} />}
     </div>
   );
 };

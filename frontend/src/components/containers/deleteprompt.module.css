@@ -1,0 +1,31 @@
+.promptContainer {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    z-index: 3;
+    backdrop-filter: blur(20px);
+}
+
+.card {
+    max-width: var(--card-max-w);
+    margin: 0 auto;
+}
+
+.message {
+    display: block;
+}
+
+.cancelButton {
+    border: 2px solid var(--blue-800);
+    color: var(--blue-800);
+}
+
+.deleteButton {
+    border: 2px solid var(--red-800);
+    color: var(--red-800);
+}
