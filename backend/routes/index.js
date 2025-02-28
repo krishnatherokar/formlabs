@@ -4,8 +4,9 @@ const formRouter = require("./formRoutes");
 const loginRouter = require("./loginRoutes");
 const router = express.Router();
 
+
 router.get("/", (req, res) => {
-  res.send("Working");
+  res.redirect(`${process.env.FRONTEND_BASE}`);
 });
 
 router.use("/login", loginRouter);
