@@ -16,7 +16,7 @@ const showFormResponses = async (req, res, next) => {
     await form.populate({
       path: "responses",
       select: "_id userName",
-      options: { sort: { _id: -1 }, skip: 5 * toSkip, limit: 5 },
+      options: { sort: { _id: -1 }, skip: 10 * toSkip, limit: 10 },
     });
 
     res.json(form.responses);
