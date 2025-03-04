@@ -15,8 +15,7 @@ export const CardSkeleton = forwardRef((props, ref) => {
   return (
     <div
       ref={ref}
-      className={`${styles.skeleton} ${styles.card}`}
-      {...props}
+      className={`${styles.skeleton} ${styles.card} ${props.nameOfClass}`}
     ></div>
   );
 });
