@@ -29,15 +29,22 @@ body {
     border: none;
 }
 
-input {
+input,
+textarea {
     font-size: var(--m);
     border: none;
     color: var(--text-color);
     background-color: transparent;
     width: 100%;
+    font-family: "Outfit", serif;
 }
 
-input:focus {
+textarea {
+    resize: none;
+}
+
+input:focus,
+textarea:focus {
     outline: none;
 }
 
