@@ -8,12 +8,6 @@
 
 */
 
-.profilePhoto {
-    height: 100px;
-    width: 100px;
-    border-radius: 50%;
-}
-
 .listTitle {
     margin: 0 0 10px 10px;
     display: inline-block;
@@ -67,10 +61,11 @@
 .title,
 .description {
     display: block;
-    white-space: nowrap;
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
     overflow: hidden;
-    text-overflow: ellipsis;
-    max-width: var(--card-max-w);
 }
 
 .description {
@@ -97,13 +92,13 @@
     }
 
     .listContainer {
+        margin: 0 0 20px 0;
         width: calc(100vw - 20px);
         overflow-x: scroll;
     }
 }
 
 @media (min-width: 601px) and (max-width: 1000px) {
-
     .userInfo {
         display: flex;
         justify-content: center;
@@ -139,6 +134,10 @@
 @media (min-width: 1001px) {
     .mainBody {
         display: flex;
+    }
+
+    .profilePhoto {
+        margin: 0 0 20px 0;
     }
 
     .userInfo {

@@ -1,6 +1,7 @@
 import styles from "./profilebody.module.css";
 import ContentList from "./ContentList";
 import { useNavigate } from "react-router-dom";
+import Avatar from "react-avatar";
 
 const Profilebody = ({ user, logOut }) => {
   const navigate = useNavigate();
@@ -8,13 +9,10 @@ const Profilebody = ({ user, logOut }) => {
     <div className={styles.mainBody}>
       <div className={styles.userInfo}>
         <div>
-          <img
+          <Avatar
             className={styles.profilePhoto}
-            src={`https://avatar.iran.liara.run/username?username=${user.name}`}
-            onError={(e) => {
-              e.target.onerror = null;
-              e.target.src = "/formlabs/images/profile.svg";
-            }}
+            name={user.name}
+            round={true}
           />
         </div>
         <div>
