@@ -55,7 +55,7 @@ const CreateForm = () => {
   const deleteOption = (index, optionIndex) => {
     let newArr = [...questionArr];
     newArr[index].options.splice(optionIndex, 1);
-    setQuesDetails(newArr);
+    setQuestionArr(newArr);
   };
 
   const updateOptions = (index, optionIndex, value) => {
@@ -91,6 +91,8 @@ const CreateForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    console.log(quesDetails);
+    
     setUrl(`${import.meta.env.VITE_APP_API_URL}/form/create`);
   };
 
