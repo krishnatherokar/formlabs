@@ -6,12 +6,18 @@
     color: var(--text-color-faint);
 }
 
+.openIcon {
+    margin: 0 0 -4px 10px;
+    font-size: 24px;
+    fill: var(--blue-800);
+}
+
 .userName {
     font-size: var(--m);
 }
 
-.userName::before {
-    content: "~ ";
+.userDp {
+    margin: -2px 10px 0 0;
 }
 
 .responseHeader {

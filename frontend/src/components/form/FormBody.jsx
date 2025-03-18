@@ -9,6 +9,7 @@ import LoadingCard from "../loading/LoadingCard";
 import FullScreen from "../containers/FullScreen";
 import Card from "../containers/Card";
 import LoginButton from "../button/LoginButton";
+import { Navigate } from "react-router-dom";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
@@ -51,10 +52,7 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
   }, [answers]);
 
   useEffect(() => {
-    if (submitResponse) {
-      deleteLocalAns(id);
-      setUser(submitResponse);
-    }
+    if (submitResponse) deleteLocalAns(id);
   }, [submitResponse]);
 
   const ListOfComponents = {
@@ -75,7 +73,7 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
         <LoadingCard>Submitting Response...</LoadingCard>
       </FullScreen>
     );
-  if (submitResponse) return null;
+  if (submitResponse) return <Navigate to={`/form/r/${submitResponse}`} />;
 
   return (
     <section className={styles.mainBody}>

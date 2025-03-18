@@ -6,6 +6,7 @@ import useFetch from "../../hooks/useFetch";
 import Error from "../error/Error";
 import DeletePrompt from "../containers/DeletePrompt";
 import { MdDeleteOutline, MdOpenInNew } from "react-icons/md";
+import { useNavigate } from "react-router-dom";
 
 const ContentList = ({ contentType }) => {
   const [content, setContent] = useState(null);
@@ -17,15 +18,15 @@ const ContentList = ({ contentType }) => {
     }?toSkip=${skip}`
   );
 
+  const navigate = useNavigate();
+
   const openForm = (form) => {
     if (contentType == "forms") {
-      window.open(
-        `${import.meta.env.VITE_APP_BASE_URL}/form/fr/${form._id}?title=${
-          form.title
-        }&description=${form.description}`
+      navigate(
+        `/form/fr/${form._id}?title=${form.title}&description=${form.description}`
       );
     } else {
-      window.open(`${import.meta.env.VITE_APP_BASE_URL}/form/r/${form._id}`);
+      navigate(`/form/r/${form._id}`);
     }
   };
 
@@ -66,7 +67,7 @@ const ContentList = ({ contentType }) => {
 
   return (
     <>
-      {promptProps && <DeletePrompt {...promptProps} callback={refreshList} />}
+      {promptProps && <DeletePrompt {...promptProps} />}
       <div ref={containerRef} className={styles.listContainer}>
         {content ? (
           content.length ? (
@@ -83,9 +84,16 @@ const ContentList = ({ contentType }) => {
                     className={styles.deleteSvg}
                     onClick={() =>
                       setPromptProps({
-                        form,
-                        content: contentType,
+                        message: `Are you sure you want to delete the ${
+                          contentType == "responses" ? "response to the " : ""
+                        }form "${form.title}"?`,
+                        endPoint: `${
+                          import.meta.env.VITE_APP_API_URL
+                        }/form/delete/${
+                          contentType == "responses" ? "r/" : ""
+                        }${form._id}`,
                         setPromptProps,
+                        callback: refreshList,
                       })
                     }
                   />

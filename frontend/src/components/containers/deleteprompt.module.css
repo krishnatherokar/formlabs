@@ -2,6 +2,7 @@
     position: fixed;
     top: 0;
     left: 0;
+    padding: 10px;
     height: 100vh;
     width: 100vw;
     display: flex;
@@ -18,6 +19,14 @@
 
 .message {
     display: block;
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
+.buttonContainer {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
 }
 
 .cancelButton {

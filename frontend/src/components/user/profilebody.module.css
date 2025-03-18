@@ -48,19 +48,36 @@
 
 .userInfo {
     margin: 0 0 40px 0;
-    word-break: break-all;
+    word-wrap: break-word;
 }
 
-.logoutButton {
+.userName {
+    font-size: var(--l);
+}
+
+.email {
+    color: var(--text-color-faint);
+}
+
+.editIcon {
+    float: right;
+    font-size: 24px;
+    margin: 6px -6px 0 0;
+    fill: var(--blue-800);
+}
+
+.logoutButton,
+.deleteButton {
+    display: inline-block;
     cursor: pointer;
-    margin: 0;
+    margin: 0 10px 0 0;
+    padding: 4px;
     color: var(--red-800);
     background: none;
 }
 
 .title,
 .description {
-    display: block;
     display: -webkit-box;
     line-clamp: 1;
     -webkit-line-clamp: 1;
