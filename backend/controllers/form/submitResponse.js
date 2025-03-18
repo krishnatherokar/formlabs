@@ -10,22 +10,18 @@ const submitResponse = async (req, res, next) => {
     const response = await responseModel.create({
       title: form.title,
       description: form.description,
-      userName: user.name,
-      formId: form._id,
+      userInfo: user._id,
+      formInfo: form._id,
       answers,
     });
 
     form.responses.push(response._id);
-    user.resArr.push(response._id);
-    user.responses.push({
-      formId: form._id,
-      responseId: response._id,
-    });
+    user.responses.push(response._id);
 
     await form.save();
     await user.save();
 
-    res.json(user);
+    res.json(response._id);
   } catch (error) {
     next(error);
   }

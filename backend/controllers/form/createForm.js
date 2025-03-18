@@ -5,12 +5,12 @@ const createForm = async (req, res, next) => {
     const user = req.user;
     const form = await formModel.create({
       ...req.body,
-      userId: user._id,
+      userInfo: user._id,
     });
 
     user.forms.push(form._id);
     await user.save();
-    
+
     res.json(form._id);
   } catch (error) {
     next(error);

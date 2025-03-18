@@ -1,3 +1,5 @@
+const formModel = require("./formModel");
+
 mongoose = require("mongoose");
 
 const userSchema = mongoose.Schema({
@@ -13,23 +15,21 @@ const userSchema = mongoose.Schema({
   ],
   responses: [
     {
-      formId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "form",
-      },
-      responseId: {
-        type: mongoose.Schema.Types.ObjectId,
-        ref: "response",
-      },
-    },
-  ],
-  resArr: [
-    // for storing the response ids only (to use mongoose populate)
-    {
       type: mongoose.Schema.Types.ObjectId,
       ref: "response",
     },
   ],
+});
+
+userSchema.pre("findOneAndDelete", async function (next) {
+  const user = await this.model.findOne(this.getQuery());
+  if (user) {
+    const forms = await formModel.find({ userInfo: user._id });
+    for (const form of forms) {
+      await formModel.findOneAndDelete({ _id: form._id });
+    }
+  }
+  next();
 });
 
 module.exports = mongoose.model("user", userSchema);

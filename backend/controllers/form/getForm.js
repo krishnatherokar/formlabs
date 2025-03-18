@@ -2,7 +2,9 @@ const formModel = require("../../models/formModel");
 
 const getForm = async (req, res, next) => {
   try {
-    const form = await formModel.findById(req.params.id);
+    const form = await formModel
+      .findById(req.params.id)
+      .populate({ path: "userInfo", select: "name" });
     if (!form) throw new backendError("Form not found", 404);
     res.json(form);
   } catch (error) {

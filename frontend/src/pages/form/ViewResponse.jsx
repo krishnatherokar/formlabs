@@ -13,29 +13,19 @@ const ViewForm = () => {
     error,
   } = useFetch(`${import.meta.env.VITE_APP_API_URL}/form/r/${id}`);
 
-  const {
-    data: formdata,
-    loading: dataloading,
-    error: dataerror,
-  } = useFetch(
-    response
-      ? `${import.meta.env.VITE_APP_API_URL}/form/${response.formId}`
-      : null
-  );
-
   const props = {
-    data: formdata,
+    data: response?.formInfo,
     ans: response?.answers,
     readonly: true,
   };
 
-  if (error || dataerror)
+  if (error)
     return (
       <FullScreen>
         <Error>{error || dataerror}</Error>
       </FullScreen>
     );
-  if (loading || dataloading) return <FormSkeleton />;
+  if (loading) return <FormSkeleton />;
 
   return <FormBody {...props} />;
 };

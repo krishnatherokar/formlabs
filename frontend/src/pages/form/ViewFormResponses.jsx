@@ -6,6 +6,7 @@ import { CardSkeleton } from "../../components/loading/FormSkeleton";
 import Card from "../../components/containers/Card";
 import Error from "../../components/error/Error";
 import { MdOpenInNew } from "react-icons/md";
+import Avatar from "react-avatar";
 
 const ViewFormResponses = () => {
   const [content, setContent] = useState(null);
@@ -56,7 +57,11 @@ const ViewFormResponses = () => {
     <div className={styles.mainContainer}>
       <div className={styles.infoContainer}>
         <div className={styles.infoWrap}>
-          <h1 className={styles.title}>{title}</h1>
+          <span className={styles.title}>{title}</span>
+          <MdOpenInNew
+            onClick={() => navigate(`/form/${id}`)}
+            className={styles.openIcon}
+          />
           <p className={styles.description}>{description}</p>
         </div>
       </div>
@@ -71,7 +76,15 @@ const ViewFormResponses = () => {
                     className={styles.openResponse}
                     onClick={() => openResponse(response._id)}
                   />
-                  <span className={styles.userName}>{response.userName}</span>
+                  <Avatar
+                    className={styles.userDp}
+                    name={response.userInfo.name}
+                    round={true}
+                    size="30px"
+                  />
+                  <span className={styles.userName}>
+                    {response.userInfo.name}
+                  </span>
                 </Card>
               );
             })

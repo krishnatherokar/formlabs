@@ -8,10 +8,7 @@ const deleteForm = async (req, res, next) => {
       throw new backendError("Not authorized to delete this", 401);
     }
 
-    let result = await formModel.deleteOne({ _id: id });
-    if (result.deletedCount != 1) {
-      throw new backendError("Not found", 404);
-    }
+    await formModel.findOneAndDelete({ _id: id });
     user.forms.splice(user.forms.indexOf(id), 1);
     await user.save();
     res.send("Deleted");

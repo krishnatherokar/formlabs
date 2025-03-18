@@ -3,7 +3,7 @@ const showUserResponses = async (req, res, next) => {
     const user = req.user;
     const { toSkip } = req.query || 0;
     await user.populate({
-      path: "resArr",
+      path: "responses",
       select: "_id title description",
       options: {
         sort: { _id: -1 },
@@ -12,7 +12,7 @@ const showUserResponses = async (req, res, next) => {
       },
     });
 
-    res.json(user.resArr);
+    res.json(user.responses);
   } catch (error) {
     next(error);
   }

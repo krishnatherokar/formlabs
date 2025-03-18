@@ -6,7 +6,7 @@ const showFormResponses = async (req, res, next) => {
     const form = await formModel.findOne({ _id: req.params.id });
 
     // check if the user who is trying to access the responses is the one who created the form
-    if (!form.userId.equals(user._id))
+    if (!form.userInfo.equals(user._id))
       throw new backendError(
         "You do not have the permission to access this page",
         403
@@ -15,8 +15,12 @@ const showFormResponses = async (req, res, next) => {
     const { toSkip } = req.query || 0;
     await form.populate({
       path: "responses",
-      select: "_id userName",
+      select: "_id userInfo",
       options: { sort: { _id: -1 }, skip: 10 * toSkip, limit: 10 },
+      populate: {
+        path: "userInfo",
+        select: "name",
+      },
     });
 
     res.json(form.responses);

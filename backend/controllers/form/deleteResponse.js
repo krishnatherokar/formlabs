@@ -4,7 +4,7 @@ const deleteResponse = async (req, res, next) => {
   try {
     const user = req.user;
     const id = req.params.id;
-    if (!user.resArr.includes(id)) {
+    if (!user.responses.includes(id)) {
       throw new backendError("Not authorized to delete this", 401);
     }
 
@@ -12,11 +12,7 @@ const deleteResponse = async (req, res, next) => {
     if (result.deletedCount != 1) {
       throw new backendError("Not found", 404);
     }
-    user.resArr.splice(user.resArr.indexOf(id), 1);
-    user.responses.splice(
-      user.responses.findIndex((r) => r.responseId === id),
-      1
-    );
+    user.responses.splice(user.responses.indexOf(id), 1);
     await user.save();
     res.send("Deleted");
   } catch (error) {

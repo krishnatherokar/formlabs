@@ -1,9 +1,10 @@
 const mongoose = require("mongoose");
+const responseModel = require("./responseModel");
 
 const formSchema = mongoose.Schema({
   title: String,
   description: String,
-  userId: {
+  userInfo: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "user",
   },
@@ -20,6 +21,12 @@ const formSchema = mongoose.Schema({
       ref: "response",
     },
   ],
+});
+
+formSchema.pre("findOneAndDelete", async function (next) {
+  const form = await this.model.findOne(this.getQuery());
+  if (form) await responseModel.deleteMany({ formInfo: form._id });
+  next();
 });
 
 module.exports = mongoose.model("form", formSchema);
