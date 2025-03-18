@@ -10,7 +10,7 @@ const logNewUser = async (req, res, next) => {
     if (user) throw new backendError("Already a member, please log in", 400);
 
     const valid = req.cookies.otp
-      ? bcrypt.compare(otp, req.cookies.otp)
+      ? await bcrypt.compare(otp, req.cookies.otp)
       : false;
 
     if (!valid) throw new backendError("Invalid OTP", 401);
