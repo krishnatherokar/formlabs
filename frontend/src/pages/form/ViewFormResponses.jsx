@@ -62,7 +62,7 @@ const ViewFormResponses = () => {
             onClick={() => navigate(`/form/${id}`)}
             className={styles.openIcon}
           />
-          <p className={styles.description}>{description}</p>
+          <div className={styles.description}>{description}</div>
         </div>
       </div>
       <div className={styles.listContainer}>

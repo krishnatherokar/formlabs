@@ -10,6 +10,7 @@ import FullScreen from "../containers/FullScreen";
 import Card from "../containers/Card";
 import LoginButton from "../button/LoginButton";
 import { Navigate } from "react-router-dom";
+import Avatar from "react-avatar";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
@@ -77,10 +78,20 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
 
   return (
     <section className={styles.mainBody}>
+      <div className={styles.userDetails}>
+        {readonly ? <>Response submitted by</> : <>Form created by</>}
+        <Avatar
+          className={styles.profilePhoto}
+          name={data.userInfo.name}
+          round={true}
+          size="20px"
+        />
+        {data.userInfo.name}
+      </div>
       <div className={styles.detailsWrap}>
         <div className={styles.formDetails}>
-          <h1>{data.title}</h1>
-          <p>{data.description}</p>
+          <span className={styles.title}>{data.title}</span>
+          <div className={styles.description}>{data.description}</div>
         </div>
       </div>
       <div className={styles.formBody}>

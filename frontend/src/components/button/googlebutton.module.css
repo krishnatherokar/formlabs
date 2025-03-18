@@ -3,3 +3,9 @@
     width: 24px;
     margin: -4px 4px -6px 0;
 }
+
+.googleButton {
+    background: none;
+    border: 2px solid var(--card-background);
+    font-size: var(--s);
+}

@@ -1,9 +1,29 @@
 .loginButton {
     display: block;
-    margin: 10px auto;
+    width: 100%;
+    margin: 4px auto;
     background: var(--blue-800);
     color: var(--white-800);
     border-radius: var(--rad-s);
+}
+
+.error {
+    color: var(--red-800);
+}
+
+.otpButton {
+    color: var(--white-800);
+    background: var(--blue-800);
+    font-size: var(--s);
+    margin: 4px 8px 4px 0;
+}
+
+.otpFlex {
+    display: flex;
+}
+
+.orText {
+    margin: 10px 0 4px 0;
 }
 
 .loader {
@@ -11,7 +31,7 @@
     width: 20px;
     height: 20px;
     border: 3px solid transparent;
-    border-top: 3px solid var(--background-color);
+    border-top: 3px solid var(--white-800);
     border-radius: 50%;
     display: inline-block;
     animation: spin 1s linear infinite;
@@ -21,6 +41,7 @@
     display: inline-block;
     margin: 0 0 0 10px;
     color: var(--blue-800);
+    cursor: pointer;
 }
 
 @keyframes spin {
@@ -34,27 +55,14 @@
 }
 
 .authContainer {
-    max-width: var(--card-max-w);
+    max-width: 400px;
     margin: 0 auto;
     text-align: center;
 }
 
 .authContainer input {
-    max-width: 300px;
-    margin: 14px auto;
+    margin: 4px auto;
     padding: 10px;
     background: var(--card-background);
     border-radius: var(--rad-s);
-    border-bottom: 4px solid var(--blue-800);
-}
-
-.flexOtp {
-    max-width: 300px;
-    display: flex;
-    margin: 0 auto;
-}
-
-.flexOtp button {
-    font-size: var(--s);
-    margin: auto 0 auto 10px;
 }

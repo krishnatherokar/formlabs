@@ -14,7 +14,7 @@ const GoogleButton = () => {
     // the url has redirectTo query to indicate where to redirect the user after successfull login
   };
   return (
-    <button onClick={handleOAuth}>
+    <button className={styles.googleButton} onClick={handleOAuth}>
       <FcGoogle className={styles.googleSvg} />
       Continue with Google
     </button>

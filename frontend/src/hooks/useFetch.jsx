@@ -51,6 +51,7 @@ const useFetch = (url, { body = null, ...options } = {}, method = "GET") => {
     }
 
     if (url) fetchData();
+    else setstate({ data: null, loading: false, error: null });
     return () => controller.abort();
   }, [url]);
 

@@ -10,14 +10,6 @@ export const AuthRoutes = () => {
         index
         element={
           <Suspense fallback={<Loading />}>
-            <Auth login={true} />
-          </Suspense>
-        }
-      />
-      <Route
-        path="register"
-        element={
-          <Suspense fallback={<Loading />}>
             <Auth />
           </Suspense>
         }

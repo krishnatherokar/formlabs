@@ -4,8 +4,39 @@
     margin: 0 auto;
 }
 
+.formBody {
+    margin: 0 auto 40px auto;
+}
+
 .formDetails {
     padding: 0 20px 20px 20px;
+}
+
+.title {
+    font-size: var(--l);
+}
+
+.description {
+    color: var(--text-color-faint);
+}
+
+.profilePhoto {
+    display: inline-block;
+    margin: -1px 4px 0 2px;
+}
+
+.userDetails {
+    display: block;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 10px;
+    text-align: center;
+    background: var(--background-color);
+    font-size: var(--s);
+    color: var(--text-color-faint);
+    z-index: 4;
 }
 
 @media (min-width: 801px) {
@@ -25,6 +56,6 @@
 
     .formBody {
         flex: 0 0 70%;
-        margin: 0 auto;
+        margin: 0 auto 40px auto;
     }
 }

@@ -14,7 +14,7 @@ const ViewForm = () => {
   } = useFetch(`${import.meta.env.VITE_APP_API_URL}/form/r/${id}`);
 
   const props = {
-    data: response?.formInfo,
+    data: { ...response?.formInfo, userInfo: response?.userInfo },
     ans: response?.answers,
     readonly: true,
   };
