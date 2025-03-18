@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import QuestionBody from "../../components/form/QuestionBody";
-import styles from "../../components/form/questionbody.module.css";
+import CreateFormBody from "../../components/form/CreateFormBody";
+import styles from "../../components/form/createformbody.module.css";
 import formstyles from "../../components/form/formbody.module.css";
 import useFetch from "../../hooks/useFetch";
 import Error from "../../components/error/Error";
@@ -8,6 +8,7 @@ import Card from "../../components/containers/Card";
 import LoadingCard from "../../components/loading/LoadingCard";
 import FullScreen from "../../components/containers/FullScreen";
 import { useNavigate } from "react-router-dom";
+import { MdAdd } from "react-icons/md";
 
 const CreateForm = () => {
   const [questionArr, setQuestionArr] = useState([]);
@@ -19,7 +20,7 @@ const CreateForm = () => {
   const [key, setKey] = useState(0);
   const navigate = useNavigate();
 
-  const addNewQues = (component) => {
+  const addNewQuestion = (component) => {
     if (key == 10) {
       setError("Cannot add more than 10 questions");
     } else {
@@ -31,16 +32,30 @@ const CreateForm = () => {
     }
   };
 
-  const addNewOption = (index) => {
-    let newArr = [...questionArr];
-    newArr[index].options.push("");
-    setQuestionArr(newArr);
+  const deleteQuestion = (index) => {
+    setKey((prev) => prev - 1);
+    setQuestionArr((prev) => [
+      ...prev.slice(0, index),
+      ...prev.slice(index + 1),
+    ]);
   };
 
   const updateQuestion = (index, value) => {
     let newArr = [...questionArr];
     newArr[index].question = value;
     setQuestionArr(newArr);
+  };
+
+  const addNewOption = (index) => {
+    let newArr = [...questionArr];
+    newArr[index].options.push("");
+    setQuestionArr(newArr);
+  };
+
+  const deleteOption = (index, optionIndex) => {
+    let newArr = [...questionArr];
+    newArr[index].options.splice(optionIndex, 1);
+    setQuesDetails(newArr);
   };
 
   const updateOptions = (index, optionIndex, value) => {
@@ -125,25 +140,21 @@ const CreateForm = () => {
             size: questionArr.length,
             questionObj,
             updateQuestion,
+            deleteQuestion,
             addNewOption,
             updateOptions,
+            deleteOption,
           };
 
           return (
             <Card key={i}>
-              <QuestionBody {...props} />
+              <CreateFormBody {...props} />
             </Card>
           );
         })}
         {error ? <Error>{error}</Error> : null}
         <button key={key} className={styles.addbutton}>
-          <svg
-            className={styles.addIcon}
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 -960 960 960"
-          >
-            <path d="M440-440H200v-80h240v-240h80v240h240v80H520v240h-80v-240Z" />
-          </svg>
+          <MdAdd className={styles.addIcon} />
           Question
           <div
             className={`${styles.optionContainer} ${
@@ -151,11 +162,12 @@ const CreateForm = () => {
             }`}
           >
             {options.map((element, ei) => {
+              // element = [optionName, component]
               return (
                 <div
                   key={ei}
                   className={styles.choices}
-                  onClick={(e) => addNewQues(element[1])}
+                  onClick={(e) => addNewQuestion(element[1])}
                 >
                   {element[0]}
                 </div>
