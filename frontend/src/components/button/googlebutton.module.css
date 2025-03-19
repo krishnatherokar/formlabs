@@ -5,7 +5,6 @@
 }
 
 .googleButton {
-    background: none;
-    border: 2px solid var(--card-background);
+    background: var(--card-background);
     font-size: var(--s);
 }

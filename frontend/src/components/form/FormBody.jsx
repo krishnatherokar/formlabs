@@ -106,18 +106,18 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
               setAns,
             };
             return (
-              <Card key={i}>
+              <Card nameOfClass={styles.card} key={i}>
                 <Component {...props} />
               </Card>
             );
           })}
           {readonly ? null : (
-            <>
+            <div className={styles.buttonFlex}>
               {isLogged ? null : <LoginButton />}
               <button type="submit" disabled={!isLogged}>
                 Submit
               </button>
-            </>
+            </div>
           )}
         </form>
       </div>

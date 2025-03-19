@@ -20,7 +20,7 @@ const TextAnswer = ({ index, details, val, readonly, setAns }) => {
       {readonly ? (
         val
       ) : (
-        <textarea
+        <input
           type="text"
           placeholder="Write here"
           onChange={handleChange}

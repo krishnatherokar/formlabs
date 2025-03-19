@@ -10,6 +10,7 @@
     margin: 0 0 -4px 10px;
     font-size: 24px;
     fill: var(--blue-800);
+    cursor: pointer;
 }
 
 .userName {

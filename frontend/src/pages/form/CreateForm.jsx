@@ -8,7 +8,8 @@ import Card from "../../components/containers/Card";
 import LoadingCard from "../../components/loading/LoadingCard";
 import FullScreen from "../../components/containers/FullScreen";
 import { useNavigate } from "react-router-dom";
-import { MdAdd } from "react-icons/md";
+import { MdAbc, MdCheckBox, MdRadioButtonChecked } from "react-icons/md";
+import { AiOutlineAppstoreAdd } from "react-icons/ai";
 
 const CreateForm = () => {
   const [questionArr, setQuestionArr] = useState([]);
@@ -27,7 +28,7 @@ const CreateForm = () => {
       setKey((prev) => prev + 1);
       setQuestionArr((prev) => [
         ...prev,
-        { question: "", component: component, options: [] },
+        { question: "", component, options: [] },
       ]);
     }
   };
@@ -84,15 +85,13 @@ const CreateForm = () => {
   );
 
   const options = [
-    ["Text Answer", "textanswer"],
-    ["Multiple Choice", "multichoice"],
-    ["Checkbox", "multiselect"],
+    ["Text", "textanswer", <MdAbc />],
+    ["Multiple Choice", "multichoice", <MdRadioButtonChecked />],
+    ["Checkbox", "multiselect", <MdCheckBox />],
   ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log(quesDetails);
-    
     setUrl(`${import.meta.env.VITE_APP_API_URL}/form/create`);
   };
 
@@ -120,7 +119,7 @@ const CreateForm = () => {
   return (
     <section className={formstyles.mainBody}>
       <div className={formstyles.detailsWrap}>
-        <div className={formstyles.formDetails}>
+        <div className={styles.formDetails}>
           <input
             className={styles.titleInput}
             onChange={handleChange}
@@ -131,7 +130,7 @@ const CreateForm = () => {
             className={styles.descriptionInput}
             onChange={handleChange}
             name="description"
-            placeholder="Description"
+            placeholder="Enter the description"
           />
         </div>
       </div>
@@ -155,29 +154,31 @@ const CreateForm = () => {
           );
         })}
         {error ? <Error>{error}</Error> : null}
-        <button key={key} className={styles.addbutton}>
-          <MdAdd className={styles.addIcon} />
-          Question
-          <div
-            className={`${styles.optionContainer} ${
-              questionArr.length ? styles.top : styles.bottom
-            }`}
-          >
-            {options.map((element, ei) => {
-              // element = [optionName, component]
-              return (
-                <div
-                  key={ei}
-                  className={styles.choices}
-                  onClick={(e) => addNewQuestion(element[1])}
-                >
-                  {element[0]}
-                </div>
-              );
-            })}
-          </div>
-        </button>
-        <button onClick={handleSubmit}>Submit</button>
+        <div className={formstyles.buttonFlex}>
+          <button key={key} className={styles.addbutton}>
+            <AiOutlineAppstoreAdd /> Add Section
+            <div
+              className={`${styles.optionContainer} ${
+                questionArr.length ? styles.top : styles.bottom
+              }`}
+            >
+              {options.map((element, ei) => {
+                // element = [optionName, component]
+                return (
+                  <div
+                    key={ei}
+                    className={styles.choices}
+                    onClick={(e) => addNewQuestion(element[1])}
+                  >
+                    {element[2]}
+                    {element[0]}
+                  </div>
+                );
+              })}
+            </div>
+          </button>
+          <button onClick={handleSubmit}>Publish</button>
+        </div>
       </div>
     </section>
   );

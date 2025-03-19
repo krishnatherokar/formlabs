@@ -1,12 +1,10 @@
 import {
-  MdAdd,
   MdCheckBoxOutlineBlank,
   MdDeleteOutline,
   MdRadioButtonUnchecked,
 } from "react-icons/md";
-import { TiDeleteOutline } from "react-icons/ti";
 import { RxCross1 } from "react-icons/rx";
-
+import { GrFormAdd } from "react-icons/gr";
 import styles from "./createformbody.module.css";
 import questionstyles from "./questions/index.module.css";
 
@@ -28,7 +26,7 @@ const CreateFormBody = ({
           className={styles.questionInput}
           autoFocus={index == size - 1}
           type="text"
-          placeholder="Question"
+          placeholder="Enter the question"
           onChange={(e) => updateQuestion(index, e.target.value)}
           value={question}
         />
@@ -55,7 +53,7 @@ const CreateFormBody = ({
                   className={styles.optionInput}
                   autoFocus={i == options.length - 1}
                   type="text"
-                  placeholder="Option"
+                  placeholder="Enter the option"
                   onChange={(e) => updateOptions(index, i, e.target.value)}
                   onKeyDown={(e) => {
                     if (e.key == "Enter") addNewOption(index);
@@ -64,7 +62,10 @@ const CreateFormBody = ({
                   }}
                   value={optionValue}
                 />
-                <RxCross1 onClick={() => deleteOption(index, i)} />
+                <RxCross1
+                  className={styles.crossSvg}
+                  onClick={() => deleteOption(index, i)}
+                />
               </div>
             );
           })}
@@ -72,7 +73,7 @@ const CreateFormBody = ({
             className={styles.optionbutton}
             onClick={() => addNewOption(index)}
           >
-            <MdAdd className={styles.addIcon} />
+            <GrFormAdd className={styles.addIcon} />
             Option
           </button>
         </>

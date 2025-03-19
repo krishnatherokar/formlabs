@@ -7,11 +7,23 @@
     font-size: var(--l);
 }
 
-.addIcon {
-    height: 24px;
-    width: 24px;
-    margin: -6px 0 -6px -4px;
-    fill: var(--white-800);
+.titleInput,
+.descriptionInput {
+    padding: 10px;
+}
+
+.formDetails {
+    max-width: var(--card-max-w);
+    margin: 0 auto 20px auto;
+    padding: 10px;
+    background: var(--card-background);
+    border-radius: var(--rad-m);
+}
+
+@media (min-width: 801px) {
+    .formDetails {
+        margin: 0 0 20px 20px;
+    }
 }
 
 .questionInput {
@@ -23,29 +35,37 @@
     margin: 6px 0;
 }
 
+.optionbutton {
+    font-size: var(--s);
+    background: var(--blue-800-40);
+    color: var(--blue-800);
+    padding: 6px 10px 10px 10px;
+    margin: 10px 10px 10px 0;
+}
+
 .addbutton {
     position: relative;
-    text-align: left;
-    color: var(--white-800);
-    background-color: var(--blue-800);
 }
 
 .addbutton svg {
-    margin: -6px 0 -6px -4px;
+    margin: 0 0 -1px 0;
 }
 
 .deleteSvg {
     height: 26px;
     width: 26px;
-    margin: 0 -4px 0 10px;
+    margin: -10px -4px 0 20px;
 }
 
-.optionbutton {
-    font-size: var(--s);
-    background: var(--blue-800);
-    color: var(--white-800);
-    border-radius: 30px;
-    margin: 10px 10px 10px 0;
+.deleteSvg, .crossSvg {
+    cursor: pointer;
+}
+
+.addIcon {
+    height: 20px;
+    width: 20px;
+    margin: 0 0 -4px -4px;
+    fill: var(--blue-800);
 }
 
 .flex {
@@ -55,6 +75,7 @@
 }
 
 .optionContainer {
+    padding: 10px 0;
     height: 0;
     width: 0;
     overflow: hidden;
@@ -63,7 +84,6 @@
     position: absolute;
     left: 0;
     border-radius: var(--rad-s);
-    padding: 10px;
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
 }
@@ -77,21 +97,28 @@
 }
 
 .choices {
-    width: max-content;
-    padding: 8px;
-    margin: 2px;
+    text-align: center;
+    display: block;
+    color: var(--text-color);
+    padding: 10px;
     border-radius: var(--rad-s);
-    border: 2px solid transparent;
+    transition: color .2s, background-color .2s;
 }
 
 .choices:hover {
-    border: 2px solid var(--blue-800);
+    color: var(--blue-800);
+    background: var(--blue-800-40);
+}
+
+.choices svg {
+    height: 20px;
+    width: 20px;
+    margin: 0 4px -4px 0;
 }
 
 .addbutton:hover .optionContainer,
 .addbutton:focus .optionContainer {
     height: fit-content;
-    width: fit-content;
+    width: 100%;
     opacity: 1;
-    display: block;
 }

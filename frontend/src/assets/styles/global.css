@@ -1,10 +1,13 @@
 @import './variables.module.css';
-@import url('https://fonts.googleapis.com/css2?family=Grechen+Fuemen&family=Outfit&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Bytesized&family=Outfit&display=swap');
 
 * {
     transition: opacity .4s, border .4s, var(--transition-property) .4s;
     box-sizing: border-box;
     -webkit-tap-highlight-color: transparent;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
 }
 
 body {
@@ -51,7 +54,7 @@ textarea:focus {
 button {
     margin: 10px;
     padding: 10px;
-    font-size: var(--m);
+    font-size: var(--s);
     border: none;
     cursor: pointer;
     border-radius: var(--rad-s);

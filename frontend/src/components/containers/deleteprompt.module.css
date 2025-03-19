@@ -9,12 +9,13 @@
     flex-direction: column;
     justify-content: center;
     z-index: 3;
-    backdrop-filter: blur(20px);
+    background-color: var(--black-40);
+    backdrop-filter: blur(10px);
 }
 
 .card {
     max-width: var(--card-max-w);
-    margin: 0 auto;
+    margin: 0 auto 10vh auto;
 }
 
 .message {
@@ -30,11 +31,11 @@
 }
 
 .cancelButton {
-    border: 2px solid var(--blue-800);
+    background: var(--blue-800-40);
     color: var(--blue-800);
 }
 
 .deleteButton {
-    border: 2px solid var(--red-800);
+    background: var(--red-800-40);
     color: var(--red-800);
 }

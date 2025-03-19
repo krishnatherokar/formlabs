@@ -4,6 +4,10 @@
     margin: 0 auto;
 }
 
+.card {
+    border-bottom: 10px solid var(--blue-800-60);
+}
+
 .formBody {
     margin: 0 auto 40px auto;
 }
@@ -23,6 +27,21 @@
 .profilePhoto {
     display: inline-block;
     margin: -1px 4px 0 2px;
+}
+
+.buttonFlex {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+}
+
+.buttonFlex button {
+    display: block;
+    margin: 0;
+    width: 100%;
+    font-size: var(--s);
+    background: var(--blue-800-40);
+    color: var(--blue-800);
 }
 
 .userDetails {

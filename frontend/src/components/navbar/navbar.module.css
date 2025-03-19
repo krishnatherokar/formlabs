@@ -21,7 +21,7 @@
 .brandName {
     color: var(--text-color);
     margin: 0px 10px;
-    font-family: "Grechen Fuemen";
+    font-family: "Bytesized";
     font-size: var(--xl);
     display: inline-block;
 }

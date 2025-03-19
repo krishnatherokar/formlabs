@@ -130,7 +130,10 @@ const Login = ({
           </span>
         </>
       )}
-      <div className={styles.orText}>- OR -</div>
+      <div className={styles.orText}>
+        <hr />
+        <span>or</span>
+      </div>
       <GoogleButton />
     </div>
   );
