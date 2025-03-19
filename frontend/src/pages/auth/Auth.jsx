@@ -26,7 +26,8 @@ const Auth = () => {
       `${import.meta.env.VITE_APP_API_URL}${
         isLogin ? "/login" : "/login/newuser"
         // if login is true, set the path to /login else to login/newuser (register)
-      }`
+      }?time=${new Date().getTime()}`
+      // time is added so that after encountering an error, when user clicks login or register again, the browser must send a new request
     );
   };
 

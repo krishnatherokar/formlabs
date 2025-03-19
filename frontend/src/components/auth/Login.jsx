@@ -21,7 +21,7 @@ const Login = ({
     setOtpUrl(
       `${import.meta.env.VITE_APP_API_URL}/login/otp?email=${
         emailRef.current.value
-      }`
+      }&time=${new Date().getTime()}`
     );
   };
 
