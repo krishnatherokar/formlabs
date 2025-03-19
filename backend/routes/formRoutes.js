@@ -7,8 +7,10 @@ const showFormResponses = require("../controllers/form/showFormResponses");
 const createForm = require("../controllers/form/createForm");
 const deleteForm = require("../controllers/form/deleteForm");
 const deleteResponse = require("../controllers/form/deleteResponse");
+const showRecentForms = require("../controllers/form/showRecentForms");
 const formRouter = express.Router();
 
+formRouter.get("/", showRecentForms);
 formRouter.get("/:id", getForm);
 formRouter.get("/r/:id", showResponse);
 
