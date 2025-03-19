@@ -1,0 +1,42 @@
+.formListContainer {
+    max-width: var(--card-max-w);
+    margin: 0 auto;
+}
+
+.card {
+    max-width: var(--card-max-w);
+    cursor: pointer;
+    background-color: var(--card-background);
+    margin: 20px auto;
+    padding: 20px;
+    border-radius: var(--rad-m);
+}
+
+.description,
+.username {
+    font-size: var(--s);
+    color: var(--text-color-faint);
+}
+
+.footer {
+    font-size: var(--s);
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100vw;
+    padding: 8px;
+    text-align: center;
+    background-color: var(--background-color);
+}
+
+.footer a {
+    color: var(--text-color);
+}
+
+.footer svg {
+    margin: 0 4px -1px 0;
+}
+
+.avatar {
+    margin: 0 6px 0 0;
+}
