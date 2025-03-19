@@ -2,16 +2,24 @@ import styles from "./profilebody.module.css";
 import ContentList from "./ContentList";
 import { useNavigate } from "react-router-dom";
 import Avatar from "react-avatar";
-import DeletePrompt from "../containers/DeletePrompt";
+import { RiUserSettingsLine } from "react-icons/ri";
+import { HiOutlineDocumentAdd } from "react-icons/hi";
 import { useState } from "react";
-import { MdOutlineEdit } from "react-icons/md";
+import Settings from "./Settings";
 
 const Profilebody = ({ user, logOut }) => {
-  const [promptProps, setPromptProps] = useState(null);
   const navigate = useNavigate();
+  const [settingsVisible, setSettingsVisible] = useState(false);
+
+  const props = {
+    logOut,
+    setSettingsVisible,
+  };
+
+  if (settingsVisible) return <Settings {...props} />;
+
   return (
     <div className={styles.mainBody}>
-      {promptProps && <DeletePrompt {...promptProps} />}
       <div className={styles.userInfo}>
         <Avatar
           className={styles.profilePhoto}
@@ -20,26 +28,14 @@ const Profilebody = ({ user, logOut }) => {
           size="100px"
         />
         <div>
-          <MdOutlineEdit className={styles.editIcon} />
           <div className={styles.userName}>{user.name}</div>
           <div className={styles.email}>{user.email}</div>
-          <div className={styles.logoutButton} onClick={logOut}>
-            Logout
-          </div>
-          <div
-            className={styles.deleteButton}
-            onClick={() =>
-              setPromptProps({
-                message:
-                  "Are you sure you want to delete your account? This action is irreversible.",
-                endPoint: `${import.meta.env.VITE_APP_API_URL}/user/delete`,
-                setPromptProps,
-                callback: logOut,
-              })
-            }
+          <button
+            className={styles.settingsButton}
+            onClick={() => setSettingsVisible(true)}
           >
-            Delete Account
-          </div>
+            <RiUserSettingsLine /> Settings
+          </button>
         </div>
       </div>
       <div className={styles.sideInfo}>
@@ -48,6 +44,7 @@ const Profilebody = ({ user, logOut }) => {
             onClick={() => navigate("/form")}
             className={styles.createButton}
           >
+            <HiOutlineDocumentAdd />
             Create Form
           </div>
           <div className={styles.listTitle}>Your Forms:</div>

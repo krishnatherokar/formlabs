@@ -1,0 +1,37 @@
+.container {
+    max-width: var(--card-max-w);
+}
+
+.container svg {
+    font-size: 16px;
+    margin: 0 6px -2px 0;
+}
+
+.warningText {
+    text-align: center;
+    font-size: var(--s);
+}
+
+.warningText svg {
+    margin: 0 0 -3px 0;
+}
+
+.container button {
+    font-size: var(--s);
+    display: block;
+    width: calc(100% - 20px);
+    text-align: left;
+}
+
+.backSvg {
+    float: right;
+    cursor: pointer;
+}
+
+.deleteButton {
+    color: var(--red-800);
+}
+
+.deleteButton:hover {
+    background: var(--red-800-40);
+}

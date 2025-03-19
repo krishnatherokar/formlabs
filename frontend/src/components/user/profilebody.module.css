@@ -21,11 +21,16 @@
     position: absolute;
     color: var(--blue-800);
     cursor: pointer;
-    border: 2px solid var(--blue-800);
+    background: var(--blue-800-40);
+    font-size: var(--s);
     padding: 4px 10px;
-    border-radius: 30px;
+    border-radius: var(--rad-s);
     right: 0;
-    margin: -10px 10px 0 10px;
+    margin: 0 14px 4px 10px;
+}
+
+.createButton svg {
+    margin: 0 2px -2px 0;
 }
 
 .openForm,
@@ -43,7 +48,6 @@
 
 .deleteSvg {
     float: right;
-    fill: var(--red-800);
 }
 
 .userInfo {
@@ -59,21 +63,17 @@
     color: var(--text-color-faint);
 }
 
-.editIcon {
-    float: right;
-    font-size: 24px;
-    margin: 6px -6px 0 0;
-    fill: var(--blue-800);
+.settingsButton {
+    font-size: var(--s);
+    margin: 10px 0 0 0;
+    color: var(--blue-800);
+    background: var(--blue-800-40);
+    cursor: pointer;
 }
 
-.logoutButton,
-.deleteButton {
-    display: inline-block;
-    cursor: pointer;
-    margin: 0 10px 0 0;
-    padding: 4px;
-    color: var(--red-800);
-    background: none;
+.settingsButton svg {
+    fill: var(--blue-800);
+    margin: 0 0 -2px 0;
 }
 
 .title,
@@ -108,10 +108,15 @@
         justify-content: center;
     }
 
+    .listWrapper {
+        margin: 0 auto 20px auto;
+    }
+
     .listContainer {
-        margin: 0 0 20px 0;
-        width: calc(100vw - 20px);
-        overflow-x: scroll;
+        flex: 1;
+        flex-direction: column;
+        overflow-y: scroll;
+        max-height: 50vh;
     }
 }
 
@@ -185,5 +190,9 @@
         display: flex;
         flex-direction: column;
         overflow-y: scroll;
+    }
+
+    .settingsButton {
+        margin: 10px;
     }
 }
