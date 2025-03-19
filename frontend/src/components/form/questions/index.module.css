@@ -12,11 +12,11 @@
     margin: 0 0 10px 0;
 }
 
-.optionLabel:has(input:disabled) {
+.disabled {
     opacity: .4;
 }
 
-.optionLabel:has(input:disabled):has(:checked) {
+.checked {
     opacity: 1;
 }
 

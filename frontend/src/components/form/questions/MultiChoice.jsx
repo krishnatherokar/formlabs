@@ -15,7 +15,12 @@ const MultiChoice = ({ index, details, val, readonly, setAns }) => {
       {details.options.map((option, i) => {
         const checked = selected == i;
         return (
-          <label className={styles.optionLabel} key={i}>
+          <label
+            className={`${styles.optionLabel} ${
+              checked ? styles.checked : readonly ? styles.disabled : ""
+            }`}
+            key={i}
+          >
             <input
               className={styles.hiddenInput}
               type="radio"
