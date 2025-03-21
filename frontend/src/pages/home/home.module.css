@@ -1,6 +1,131 @@
-.formListContainer {
-    max-width: var(--card-max-w);
-    margin: 0 auto;
+.rootSection {
+    margin: 0 0 -30px 0;
+}
+
+.frontSection {
+    position: relative;
+    margin: -70px -20px 0 -20px;
+    padding: 70px 20px 0 20px;
+    height: 100vh;
+    display: flex;
+    background: var(--blue-800-40);
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+.frontSectionText {
+    margin: 10px auto 20vh auto;
+}
+
+@keyframes gradientMove {
+    0% {
+        background-position: 0% 50%;
+    }
+
+    100% {
+        background-position: 100% 50%;
+    }
+}
+
+
+.heading {
+    background: linear-gradient(to right, var(--blue-800), var(--red-800));
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-size: var(--xxl);
+    font-weight: 900;
+    background-size: 200% 100%;
+    background-position: 0% 50%;
+    animation: gradientMove 3s linear infinite alternate;
+
+}
+
+.headDescription {
+    font-size: var(--m);
+}
+
+.startButton {
+    background-color: var(--blue-800-40);
+    color: var(--blue-800);
+    margin: 40px 0 0 0;
+    font-weight: 600;
+    padding: 10px 30px;
+    font-size: var(--m);
+}
+
+.footer {
+    font-size: var(--l);
+    font-weight: 600;
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    padding: 40px 0;
+    margin: 0 -20px;
+    background-color: var(--blue-800-40);
+}
+
+.footer .startButton {
+    margin: 0;
+}
+
+.startButton svg {
+    margin: 0 0 -2px 0;
+}
+
+.downIcon {
+    font-size: var(--xxl);
+    margin: 0 auto -10vh auto;
+    color: var(--blue-800-60);
+}
+
+.title,
+.description {
+    display: -webkit-box;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.sectionHeading {
+    font-size: var(--l);
+    text-align: center;
+    margin: 100px auto 40px auto;
+    font-weight: 600;
+}
+
+.featureSection {
+    text-align: center;
+    margin: 80px auto;
+    height: calc(100vh - 160px);
+    display: grid;
+    gap: 10px;
+    grid-template-columns: repeat(2, calc((100vw - 40px - 10px)/2));
+    grid-template-rows: repeat(2, calc((100vh - 160px - 10px)/2));
+}
+
+.featureItems {
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.featureItems svg {
+    color: var(--blue-800);
+    font-size: var(--xl);
+}
+
+.featureTitle {
+    color: var(--blue-800);
+    font-size: var(--l);
+}
+
+.featureDescription {
+    font-size: var(--s);
+    color: var(--text-color-faint);
 }
 
 .card {
@@ -18,25 +143,50 @@
     color: var(--text-color-faint);
 }
 
-.footer {
+.githubButton {
+    position: absolute;
     font-size: var(--s);
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    width: 100vw;
-    padding: 8px;
     text-align: center;
-    background-color: var(--background-color);
+    margin: 40px;
+    right: 0;
+    bottom: 0;
 }
 
-.footer a {
+.githubButton a {
     color: var(--text-color);
 }
 
-.footer svg {
+.githubButton svg {
     margin: 0 4px -1px 0;
 }
 
 .avatar {
     margin: 0 6px 0 0;
+}
+
+.formListContainer {
+    margin: 0 auto;
+}
+
+@media (min-width:1001px) {
+    .featureItems svg {
+        font-size: var(--xxl);
+    }
+
+    .formListContainer {
+        width: 920px;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, 300px);
+        gap: 10px;
+    }
+
+    .card {
+        margin: 0;
+    }
+}
+
+@media (min-width: 1301px) {
+    .formListContainer {
+        width: 1230px;
+    }
 }
