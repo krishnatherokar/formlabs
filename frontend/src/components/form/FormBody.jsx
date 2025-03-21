@@ -1,9 +1,8 @@
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { MultiChoice, MultiSelect, TextAnswer } from "./questions";
 import styles from "./formbody.module.css";
 import useFetch from "../../hooks/useFetch";
 import { changeLocalAns, deleteLocalAns } from "../../utils/handleLocalSync";
-import { UserContext } from "../../context/UserContext";
 import Error from "../error/Error";
 import LoadingCard from "../loading/LoadingCard";
 import FullScreen from "../containers/FullScreen";
@@ -11,11 +10,12 @@ import Card from "../containers/Card";
 import LoginButton from "../button/LoginButton";
 import { Navigate } from "react-router-dom";
 import Avatar from "react-avatar";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
+import QRcontainer from "../containers/QRcontainer";
+import { MdOutlineQrCode } from "react-icons/md";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
-  const { setUser } = useContext(UserContext);
   const [answers, setAnswers] = useState(
     ans
       ? ans
@@ -63,6 +63,8 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
     multiselect: MultiSelect,
   };
 
+  const [qrVisible, setQrVisible] = useState(false);
+
   if (submitError)
     return (
       <FullScreen>
@@ -79,6 +81,18 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
 
   return (
     <section className={styles.mainBody}>
+      <AnimatePresence>
+        {qrVisible && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <QRcontainer setQrVisible={setQrVisible} />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div className={styles.userDetails}>
         {readonly ? <>Response submitted by</> : <>Form created by</>}
         <Avatar
@@ -92,6 +106,10 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
       <div className={styles.detailsWrap}>
         <div className={styles.formDetails}>
           <span className={styles.title}>{data.title}</span>
+          <MdOutlineQrCode
+            className={styles.qrIcon}
+            onClick={() => setQrVisible(true)}
+          />
           <div className={styles.description}>{data.description}</div>
         </div>
       </div>

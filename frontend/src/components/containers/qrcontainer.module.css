@@ -1,0 +1,41 @@
+.qrBody {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    padding: 20px;
+    z-index: 3;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    backdrop-filter: blur(10px);
+    background: var(--black-40);
+}
+
+.qrCard {
+    margin: 0 auto 10vh auto;
+    padding: 20px;
+    background: var(--card-background);
+    display: inline-block;
+    border-radius: var(--rad-s);
+}
+
+.qrWrapper {
+    padding: 10px;
+    border-radius: var(--rad-s);
+    background: var(--white-800);
+}
+
+.buttonFlex {
+    margin: 10px 0 0 0;
+    display: flex;
+    gap: 10px;
+}
+
+.buttonFlex button {
+    margin: 0;
+    width: 100%;
+    background-color: var(--blue-800-40);
+    color: var(--blue-800);
+}

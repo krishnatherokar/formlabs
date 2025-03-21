@@ -48,10 +48,17 @@
     width: 100vw;
     padding: 10px;
     text-align: center;
-    background: var(--background-color);
+    backdrop-filter: blur(10px);
     font-size: var(--s);
     color: var(--text-color-faint);
     z-index: 4;
+}
+
+.qrIcon {
+    font-size: var(--l);
+    margin: 0 0 -4px 10px;
+    cursor: pointer;
+    color: var(--blue-800);
 }
 
 @media (min-width: 1001px) {
