@@ -6,7 +6,7 @@ const showRecentForms = async (req, res, next) => {
       .find({})
       .select("-questions -responses")
       .sort({ _id: -1 })
-      .limit(10)
+      .limit(6)
       .populate({ path: "userInfo", select: "name" });
 
     res.json(recentForms);
