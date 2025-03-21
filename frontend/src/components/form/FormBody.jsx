@@ -11,6 +11,7 @@ import Card from "../containers/Card";
 import LoginButton from "../button/LoginButton";
 import { Navigate } from "react-router-dom";
 import Avatar from "react-avatar";
+import { motion } from "framer-motion";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
@@ -106,9 +107,16 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
               setAns,
             };
             return (
-              <Card nameOfClass={styles.card} key={i}>
-                <Component {...props} />
-              </Card>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.4 }}
+                key={i}
+              >
+                <Card nameOfClass={styles.card}>
+                  <Component {...props} />
+                </Card>
+              </motion.div>
             );
           })}
           {readonly ? null : (

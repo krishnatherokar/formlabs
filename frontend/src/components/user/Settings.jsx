@@ -5,13 +5,24 @@ import DeletePrompt from "../containers/DeletePrompt";
 import { MdLogout } from "react-icons/md";
 import { LuChevronsDown, LuUserRoundPen, LuUserRoundX } from "react-icons/lu";
 import { RxCross1 } from "react-icons/rx";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Settings = ({ logOut, setSettingsVisible }) => {
   const [promptProps, setPromptProps] = useState(null);
   return (
     <>
-      {promptProps && <DeletePrompt {...promptProps} />}
-
+      <AnimatePresence>
+        {promptProps && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <DeletePrompt {...promptProps} />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <Card nameOfClass={styles.container}>
         <RxCross1
           className={styles.backSvg}
@@ -24,7 +35,9 @@ const Settings = ({ logOut, setSettingsVisible }) => {
           <MdLogout /> Logout
         </button>
       </Card>
-      <div className={styles.warningText}><LuChevronsDown/> Danger Zone</div>
+      <div className={styles.warningText}>
+        <LuChevronsDown /> Danger Zone
+      </div>
       <Card nameOfClass={styles.container}>
         <button
           className={styles.deleteButton}

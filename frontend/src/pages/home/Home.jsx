@@ -4,6 +4,7 @@ import styles from "./home.module.css";
 import Avatar from "react-avatar";
 import { useNavigate } from "react-router-dom";
 import { FaGithub } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 const Home = () => {
   const { data, loading, error } = useFetch(
@@ -24,21 +25,28 @@ const Home = () => {
           Recent Forms:
           {data.map((form, i) => {
             return (
-              <div
-                onClick={() => navigate(`/form/${form._id}`)}
-                className={styles.card}
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, amount: 0.8 }}
+                transition={{ duration: 0.4 }}
                 key={i}
               >
-                <div className={styles.title}>{form.title}</div>
-                <div className={styles.description}>{form.description}</div>
-                <Avatar
-                  className={styles.avatar}
-                  name={form.userInfo.name}
-                  size={24}
-                  round={true}
-                />
-                <span className={styles.username}>{form.userInfo.name}</span>
-              </div>
+                <div
+                  onClick={() => navigate(`/form/${form._id}`)}
+                  className={styles.card}
+                >
+                  <div className={styles.title}>{form.title}</div>
+                  <div className={styles.description}>{form.description}</div>
+                  <Avatar
+                    className={styles.avatar}
+                    name={form.userInfo.name}
+                    size={24}
+                    round={true}
+                  />
+                  <span className={styles.username}>{form.userInfo.name}</span>
+                </div>
+              </motion.div>
             );
           })}
         </div>

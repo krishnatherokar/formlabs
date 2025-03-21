@@ -7,6 +7,7 @@ import Error from "../error/Error";
 import DeletePrompt from "../containers/DeletePrompt";
 import { MdDeleteOutline, MdOpenInNew } from "react-icons/md";
 import { useNavigate } from "react-router-dom";
+import { AnimatePresence, motion } from "framer-motion";
 
 const ContentList = ({ contentType }) => {
   const [content, setContent] = useState(null);
@@ -67,7 +68,18 @@ const ContentList = ({ contentType }) => {
 
   return (
     <>
-      {promptProps && <DeletePrompt {...promptProps} />}
+      <AnimatePresence>
+        {promptProps && (
+          <motion.div
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.4 }}
+          >
+            <DeletePrompt {...promptProps} />
+          </motion.div>
+        )}
+      </AnimatePresence>
       <div ref={containerRef} className={styles.listContainer}>
         {content ? (
           content.length ? (

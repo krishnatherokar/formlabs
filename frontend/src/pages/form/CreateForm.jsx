@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
-import CreateFormBody from "../../components/form/CreateFormBody";
-import styles from "../../components/form/createformbody.module.css";
+import CreateFormSection from "../../components/form/CreateFormSection";
+import styles from "../../components/form/createformsection.module.css";
 import formstyles from "../../components/form/formbody.module.css";
 import useFetch from "../../hooks/useFetch";
 import Error from "../../components/error/Error";
@@ -10,6 +10,7 @@ import FullScreen from "../../components/containers/FullScreen";
 import { useNavigate } from "react-router-dom";
 import { MdAbc, MdCheckBox, MdRadioButtonChecked } from "react-icons/md";
 import { AiOutlineAppstoreAdd } from "react-icons/ai";
+import { AnimatePresence, motion } from "framer-motion";
 
 const CreateForm = () => {
   const [questionArr, setQuestionArr] = useState([]);
@@ -18,10 +19,29 @@ const CreateForm = () => {
     description: "",
   });
   const [error, setError] = useState(null);
-  const [key, setKey] = useState(0);
   const navigate = useNavigate();
 
+  const [key, setKey] = useState(0);
+  // this key is for the "Add Section" button for:
+  // 1. tracking the number of sections added
+  // 2. each time a question is added, the button is refreshed which removes the hover or active state
+
+  const [uniqueKeys, setUniqueKeys] = useState([]);
+  const [counter, setCounter] = useState(0);
+  // the problem with key = {i} is that when a section is removed, the keys are shifted, which confuses the framer motion
+  // the uniquekeys array stores the indices, when a section is removed, it removes that index and keeps all the other as it is
+
+  const generateUniqueKey = () => {
+    setUniqueKeys((prevKeys) => [...prevKeys, counter]);
+    setCounter((prev) => prev + 1);
+  };
+
+  const deleteUniqueKey = (index) => {
+    setUniqueKeys((prevKeys) => prevKeys.filter((key, i) => i !== index));
+  };
+
   const addNewQuestion = (component) => {
+    generateUniqueKey();
     if (key == 10) {
       setError("Cannot add more than 10 questions");
     } else {
@@ -34,6 +54,7 @@ const CreateForm = () => {
   };
 
   const deleteQuestion = (index) => {
+    deleteUniqueKey(index);
     setKey((prev) => prev - 1);
     setQuestionArr((prev) => [
       ...prev.slice(0, index),
@@ -121,10 +142,10 @@ const CreateForm = () => {
       <div className={formstyles.detailsWrap}>
         <div className={styles.formDetails}>
           <input
-            className={styles.titleInput}
+            className={styles.descriptionInput}
             onChange={handleChange}
             name="title"
-            placeholder="Title"
+            placeholder="Enter the title"
           />
           <input
             className={styles.descriptionInput}
@@ -135,24 +156,34 @@ const CreateForm = () => {
         </div>
       </div>
       <div className={formstyles.formBody}>
-        {questionArr.map((questionObj, i) => {
-          const props = {
-            index: i,
-            size: questionArr.length,
-            questionObj,
-            updateQuestion,
-            deleteQuestion,
-            addNewOption,
-            updateOptions,
-            deleteOption,
-          };
+        <AnimatePresence>
+          {questionArr.map((questionObj, i) => {
+            const props = {
+              index: i,
+              size: questionArr.length,
+              questionObj,
+              updateQuestion,
+              deleteQuestion,
+              addNewOption,
+              updateOptions,
+              deleteOption,
+            };
 
-          return (
-            <Card key={i}>
-              <CreateFormBody {...props} />
-            </Card>
-          );
-        })}
+            return (
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, x: 100 }}
+                transition={{ duration: 0.4 }}
+                key={uniqueKeys[i]}
+              >
+                <Card>
+                  <CreateFormSection {...props} />
+                </Card>
+              </motion.div>
+            );
+          })}
+        </AnimatePresence>
         {error ? <Error>{error}</Error> : null}
         <div className={formstyles.buttonFlex}>
           <button key={key} className={styles.addbutton}>

@@ -5,10 +5,10 @@ import {
 } from "react-icons/md";
 import { RxCross1 } from "react-icons/rx";
 import { GrFormAdd } from "react-icons/gr";
-import styles from "./createformbody.module.css";
+import styles from "./createformsection.module.css";
 import questionstyles from "./questions/index.module.css";
 
-const CreateFormBody = ({
+const CreateFormSection = ({
   index,
   size,
   questionObj,
@@ -82,4 +82,4 @@ const CreateFormBody = ({
   );
 };
 
-export default CreateFormBody;
+export default CreateFormSection;

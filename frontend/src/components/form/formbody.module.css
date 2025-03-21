@@ -4,10 +4,6 @@
     margin: 0 auto;
 }
 
-.card {
-    border-bottom: 10px solid var(--blue-800-60);
-}
-
 .formBody {
     margin: 0 auto 40px auto;
 }
@@ -58,7 +54,7 @@
     z-index: 4;
 }
 
-@media (min-width: 801px) {
+@media (min-width: 1001px) {
     .mainBody {
         display: flex;
     }
