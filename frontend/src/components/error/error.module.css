@@ -1,7 +1,8 @@
 .errorContainer {
     margin: 10px auto;
     padding: 20px;
-    font-size: var(--m);
+    font-size: var(--s);
+    color: var(--red-800);
     max-width: var(--card-max-w);
     background: linear-gradient(90deg, var(--red-800-40), transparent);
     border-left: 4px solid var(--red-800);

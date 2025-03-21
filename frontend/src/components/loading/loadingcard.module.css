@@ -1,7 +1,8 @@
 .loadingContainer {
     margin: 10px auto;
     padding: 20px;
-    font-size: var(--m);
+    color: var(--blue-800);
+    font-size: var(--s);
     max-width: var(--card-max-w);
     background: linear-gradient(90deg, var(--blue-800-40), transparent);
     border-left: 4px solid var(--blue-800);
