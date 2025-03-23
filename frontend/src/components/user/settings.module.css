@@ -16,11 +16,35 @@
     margin: 0 0 -3px 0;
 }
 
-.container button {
+.container button,
+.inputHolder {
     font-size: var(--s);
     display: block;
     width: calc(100% - 40px);
     text-align: left;
+}
+
+.inputHolder {
+    margin: 10px;
+    padding: 10px;
+    color: var(--text-color);
+}
+
+.inputHolder form {
+    display: inline;
+}
+
+.inputHolder input {
+    width: calc(100% - 40px);
+    font-size: var(--s);
+    padding: 4px;
+    margin: -4px;
+}
+
+.infoText {
+    text-align: center;
+    color: var(--text-color-faint);
+    margin: 10px 0 -10px 0;
 }
 
 .backSvg {
