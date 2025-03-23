@@ -52,12 +52,6 @@ const Home = () => {
     <div className={styles.rootSection}>
       <div className={styles.frontSection}>
         <div className={styles.frontSectionText}>
-          <div className={styles.githubButton}>
-            <a href="https://github.com/krishnatherokar/formlabs">
-              <FaGithub />
-              GitHub
-            </a>
-          </div>
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1, y: [-10, 10, 0] }}
@@ -70,6 +64,10 @@ const Home = () => {
           <div className={styles.headDescription}>
             A platform where users can create and share their own forms.
           </div>
+          <a className={styles.githubButton} href="https://github.com/krishnatherokar/formlabs">
+              <FaGithub />
+              GitHub
+            </a>
           <button
             className={styles.startButton}
             onClick={() => navigate("/auth")}

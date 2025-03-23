@@ -56,7 +56,7 @@
 }
 
 .footer {
-    font-size: var(--l);
+    font-size: var(--m);
     font-weight: 600;
     display: flex;
     justify-content: center;
@@ -64,6 +64,10 @@
     padding: 40px 0;
     margin: 0 -20px;
     background-color: var(--blue-800-40);
+}
+
+.footer div {
+    align-content: center;
 }
 
 .footer .startButton {
@@ -98,16 +102,16 @@
 
 .featureSection {
     text-align: center;
-    margin: 80px auto;
-    height: calc(100vh - 160px);
+    margin: 60px auto 150px auto;
     display: grid;
-    gap: 10px;
-    grid-template-columns: repeat(2, calc((100vw - 40px - 10px)/2));
-    grid-template-rows: repeat(2, calc((100vh - 160px - 10px)/2));
+    gap: 60px 20px;
+    grid-template-columns: repeat(2, calc((100vw - 40px - 20px)/2));
 }
 
 .featureItems {
     padding: 10px;
+    margin: auto;
+    max-width: 400px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -144,16 +148,11 @@
 }
 
 .githubButton {
-    position: absolute;
+    display: block;
+    margin: 10px auto 0 auto;
     font-size: var(--s);
-    text-align: center;
-    margin: 40px;
-    right: 0;
-    bottom: 0;
-}
-
-.githubButton a {
     color: var(--text-color);
+    text-align: center;
 }
 
 .githubButton svg {
@@ -166,6 +165,12 @@
 
 .formListContainer {
     margin: 0 auto;
+}
+
+@media (max-width:400px) {
+    .footer {
+        gap: 20px;
+    }
 }
 
 @media (min-width:1001px) {

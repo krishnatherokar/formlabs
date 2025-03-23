@@ -22,13 +22,12 @@ body {
 
 ::-webkit-scrollbar {
     background: transparent;
-    width: 4px;
-    height: 4px;
+    width: 6px;
+    height: 6px;
 }
 
 ::-webkit-scrollbar-thumb {
-    background-color: var(--card-background);
-    border-radius: var(--rad-s);
+    background-color: var(--scrollbar-background);
     border: none;
 }
 

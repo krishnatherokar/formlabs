@@ -1,6 +1,6 @@
 :root {
     /* colors */
-    --background-color: #f2f3f5;
+    --background-color: #ededed;
     --card-background: #fcfcfc;
     --text-color: #3a3a3a;
     --text-color-faint: #919191;
@@ -9,13 +9,13 @@
     --blue-800-60: #2554ff60;
     --red-800: #EF233C;
     --red-800-40: #EF233C20;
-    --white-800: #F4F4F9;
-    --black-800: #222222;
+    --white-800: #ffffff;
     --black-40: #00000040;
+    --scrollbar-background: #afafaf;
 
     /* font sizes */
     --s: 0.9rem;
-    --m: 18px;
+    --m: 20px;
     --l: 1.4rem;
     --xl: 2rem;
     --xxl: 3rem;
@@ -26,7 +26,6 @@
     /* border radius */
     --rad-s: 4px;
     --rad-m: 8px;
-    --rad-l: 16px;
 
     --transition-property: none;
 }
@@ -36,4 +35,5 @@
     --card-background: #20202a;
     --text-color: #bdbdbd;
     --text-color-faint: #959595;
+    --scrollbar-background: #63636f;
 }

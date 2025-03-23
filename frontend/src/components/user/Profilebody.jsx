@@ -18,24 +18,17 @@ const Profilebody = ({ user, logOut }) => {
   };
 
   return (
-    <AnimatePresence>
-      {settingsVisible ? (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0, transition: { delay: 0.2 } }}
-          transition={{ duration: 0.2 }}
-          key={1}
-        >
+    <AnimatePresence mode="wait">
+      <motion.div
+        key={settingsVisible ? 1 : 0}
+        initial={{ opacity: 0, y: 20 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -20 }}
+        transition={{ duration: 0.2 }}
+      >
+        {settingsVisible ? (
           <Settings {...props} />
-        </motion.div>
-      ) : (
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.2 }}
-          exit={{ opacity: 0, y: -20 }}
-          key={2}
-        >
+        ) : (
           <div className={styles.mainBody}>
             <div className={styles.userInfo}>
               <Avatar
@@ -73,8 +66,8 @@ const Profilebody = ({ user, logOut }) => {
               </div>
             </div>
           </div>
-        </motion.div>
-      )}
+        )}
+      </motion.div>
     </AnimatePresence>
   );
 };
