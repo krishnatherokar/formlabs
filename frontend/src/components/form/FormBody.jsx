@@ -12,7 +12,7 @@ import { Navigate } from "react-router-dom";
 import Avatar from "react-avatar";
 import { AnimatePresence, motion } from "framer-motion";
 import QRcontainer from "../containers/QRcontainer";
-import { MdOutlineQrCode } from "react-icons/md";
+import { MdOutlineQrCode, MdShare } from "react-icons/md";
 
 const FormBody = ({ data, ans, readonly, isLogged }) => {
   const id = data._id;
@@ -56,6 +56,15 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
   useEffect(() => {
     if (submitResponse) deleteLocalAns(id);
   }, [submitResponse]);
+
+  const handleShare = async () => {
+    if (navigator?.share) {
+      await navigator.share({
+        text: data.title,
+        url: window.location.href,
+      });
+    }
+  };
 
   const ListOfComponents = {
     textanswer: TextAnswer,
@@ -110,6 +119,7 @@ const FormBody = ({ data, ans, readonly, isLogged }) => {
             className={styles.qrIcon}
             onClick={() => setQrVisible(true)}
           />
+          <MdShare className={styles.shareIcon} onClick={handleShare} />
           <div className={styles.description}>{data.description}</div>
         </div>
       </div>

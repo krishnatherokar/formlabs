@@ -50,13 +50,14 @@
     text-align: center;
     backdrop-filter: blur(10px);
     font-size: var(--s);
-    color: var(--text-color-faint);
+    color: var(--text-color);
     z-index: 4;
 }
 
-.qrIcon {
+.qrIcon,
+.shareIcon {
     font-size: var(--l);
-    margin: 0 0 -4px 10px;
+    margin: 0 0 -6px 10px;
     cursor: pointer;
     color: var(--blue-800);
 }
