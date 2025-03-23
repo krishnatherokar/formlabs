@@ -1,16 +1,24 @@
 import { motion } from "framer-motion";
 import styles from "./qrcontainer.module.css";
 import { QRCodeCanvas } from "qrcode.react";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 
 const QRcontainer = ({ setQrVisible }) => {
-  const [copied, setCopied] = useState(false);
+  const [qrDataUrl, setQrDataUrl] = useState(null);
+  const qrRef = useRef();
 
-  const handleCopy = () => {
-    navigator.clipboard.writeText(window.location.href);
-    setCopied(true);
-    setTimeout(() => setCopied(false), 2000);
+  useEffect(() => {
+    if (qrRef.current) setQrDataUrl(qrRef.current.toDataURL("image/png"));
+  }, []);
+
+  const handleDownload = () => {
+    if (!qrDataUrl) return;
+    const link = document.createElement("a");
+    link.href = qrDataUrl;
+    link.download = `QRCode${Date.now()}.png`;
+    link.click();
   };
+
   return (
     <div className={styles.qrBody}>
       <motion.div
@@ -25,17 +33,11 @@ const QRcontainer = ({ setQrVisible }) => {
           value={window.location.href}
           size={200}
           level={"H"}
+          ref={qrRef}
         />
         <div className={styles.buttonFlex}>
-          <button onClick={handleCopy}>
-            {copied ? <>Copied</> : <>Copy URL</>}
-          </button>
-          <button
-            className={styles.closeButton}
-            onClick={() => setQrVisible(false)}
-          >
-            Close
-          </button>
+          <button onClick={handleDownload}>Download</button>
+          <button onClick={() => setQrVisible(false)}>Close</button>
         </div>
       </motion.div>
     </div>
