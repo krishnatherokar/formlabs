@@ -3,6 +3,10 @@ import useFetch from "../../hooks/useFetch";
 import { UserContext } from "../../context/UserContext";
 import Login from "../../components/auth/Login";
 import { useNavigate, useSearchParams } from "react-router-dom";
+import Register from "../../components/auth/Register";
+import GoogleButton from "../../components/button/GoogleButton";
+import styles from "./auth.module.css";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Auth = () => {
   const [url, setUrl] = useState(null);
@@ -31,22 +35,52 @@ const Auth = () => {
     );
   };
 
+  const [isPasswordVisible, setIsPasswordVisible] = useState(false);
+
+  const togglePassword = () => {
+    setIsPasswordVisible(!isPasswordVisible);
+  };
+
   useEffect(() => {
     if (data) setUser(data);
     if (user) navigate(redirectTo);
   }, [data, user, error]);
+
+  const toggleLogin = () => {
+    setUrl(null);
+    setIsLogin(!isLogin);
+  };
 
   const props = {
     handleSubmit,
     handleChange,
     error,
     url,
-    setUrl,
-    isLogin,
-    setIsLogin,
+    toggleLogin,
+    isPasswordVisible,
+    togglePassword,
   };
 
   if (data) return null;
-  return <Login {...props} />;
+  return (
+    <div className={styles.authContainer}>
+      <AnimatePresence mode="wait">
+        <motion.div
+          key={isLogin ? "login" : "register"}
+          initial={{ y: 20 }}
+          animate={{ y: 0 }}
+          exit={{ y: -20 }}
+          transition={{ type: "spring", stiffness: 200, damping: 10 }}
+        >
+          {isLogin ? <Login {...props} /> : <Register {...props} />}
+        </motion.div>
+      </AnimatePresence>
+      <div className={styles.orText}>
+        <hr />
+        <span>or</span>
+      </div>
+      <GoogleButton />
+    </div>
+  );
 };
 export default Auth;

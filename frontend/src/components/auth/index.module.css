@@ -16,30 +16,26 @@
     background: var(--blue-800-40);
     color: var(--blue-800);
     font-size: var(--s);
-    margin: 4px 8px 4px 0;
+    margin: 4px 0;
 }
 
 .otpFlex {
     display: flex;
+    flex-direction: row-reverse;
+    gap: 8px;
 }
 
-.orText {
-    margin: 20px 0 4px 0;
+.passwordWrap {
+    position: relative;
+}
+
+.passwordButton {
+    cursor: pointer;
+    position: absolute;
+    top: 0;
+    right: 0;
     font-size: var(--m);
-}
-
-.orText hr {
-    display: block;
-    border: 0;
-    border-top: 1px solid var(--card-background);
-    margin: 0 0 -16px 0;
-}
-
-.orText span {
-    z-index: 2;
-    background-color: var(--background-color);
-    display: inline-block;
-    padding: 0 10px;
+    padding: 10px 8px 6px 8px;
 }
 
 .loader {
@@ -68,19 +64,4 @@
     100% {
         transform: rotate(360deg);
     }
-}
-
-.authContainer {
-    max-width: 400px;
-    margin: 0 auto;
-    text-align: center;
-    font-size: var(--s);
-}
-
-.authContainer input {
-    margin: 4px auto;
-    font-size: var(--s);
-    padding: 10px;
-    background: var(--card-background);
-    border-radius: var(--rad-s);
 }

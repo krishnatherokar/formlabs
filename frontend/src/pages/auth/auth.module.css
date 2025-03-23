@@ -1,0 +1,39 @@
+.authContainer {
+    max-width: 400px;
+    height: calc(80vh - 100px);
+    align-content: center;
+    margin: 0 auto;
+    text-align: center;
+    font-size: var(--s);
+}
+
+.authContainer input {
+    margin: 4px auto;
+    font-size: var(--s);
+    padding: 10px;
+    background: var(--card-background);
+    border-radius: var(--rad-s);
+}
+
+.authContainer form {
+    margin: 0 0 20px 0;
+}
+
+.orText {
+    margin: 20px 0 4px 0;
+    font-size: var(--m);
+}
+
+.orText hr {
+    display: block;
+    border: 0;
+    border-top: 1px solid var(--scrollbar-background);
+    margin: 0 0 -16px 0;
+}
+
+.orText span {
+    z-index: 3;
+    background-color: var(--background-color);
+    display: inline-block;
+    padding: 0 10px;
+}
