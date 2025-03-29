@@ -88,7 +88,7 @@ const Home = () => {
           <div className={styles.sectionHeading}>Recent Forms:</div>
           <CardSkeleton />
         </>
-      ) : data && !data.empty ? (
+      ) : data && data.length ? (
         <>
           <div className={styles.sectionHeading}>Recent Forms:</div>
           <div className={styles.formListContainer}>
